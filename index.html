@@ -367,6 +367,37 @@ html{scroll-behavior:smooth}
 
 .kbtn.kvurgu{border-color:rgba(242,177,52,.55);color:var(--gold);background:rgba(242,177,52,.1)}
 .kbtn.kvurgu:hover{border-color:var(--gold);background:rgba(242,177,52,.18)}
+
+/* ---------- kadro paneli (dikkat çeksin) ---------- */
+.kpanel{display:flex;align-items:center;gap:16px;width:100%;text-align:left;cursor:pointer;
+  font:inherit;color:inherit;padding:18px 20px;border:1px solid rgba(242,177,52,.42);border-radius:2px;
+  background:linear-gradient(135deg,rgba(242,177,52,.13),rgba(242,177,52,.04) 55%,var(--panel));
+  transition:border-color .18s,background .18s}
+.kpanel:hover{border-color:var(--gold);background:linear-gradient(135deg,rgba(242,177,52,.2),rgba(242,177,52,.06) 55%,var(--panel))}
+.kp-sol{flex:1 1 auto;min-width:0;display:block}
+.kp-bas{display:block;font-family:var(--serif);font-size:23px;letter-spacing:.05em;text-transform:uppercase;color:var(--gold);line-height:1}
+.kp-alt{display:block;font-size:14px;color:var(--dim);margin-top:7px}
+.kp-onizleme{display:block;font-size:12.5px;color:var(--faint);margin-top:6px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kp-sag{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:9px}
+.kp-say{font-family:var(--serif);font-size:22px;color:var(--jade);line-height:1;font-variant-numeric:tabular-nums}
+.kp-say.fazla{color:var(--brick)}
+.kp-tus{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--gold);
+  background:var(--gold);color:#1A1508;font-size:11.5px;font-weight:700;letter-spacing:.12em;
+  padding:8px 13px;border-radius:2px;white-space:nowrap}
+.kpanel:hover .kp-tus{filter:brightness(1.08)}
+.kp-tus .ok{font-size:9px;transition:transform .3s ease;display:inline-block}
+.kpanel[aria-expanded="true"] .ok{transform:rotate(180deg)}
+.kpanel[aria-expanded="true"] .kp-tus{background:transparent;color:var(--gold)}
+.kpanel[aria-expanded="true"] .kp-onizleme{display:none}
+@media(max-width:640px){
+  .kpanel{padding:15px;gap:12px;align-items:flex-start}
+  .kp-bas{font-size:20px}
+  .kp-alt{font-size:13px}
+  .kp-onizleme{display:none}
+  .kp-say{font-size:18px}
+  .kp-tus{font-size:10.5px;padding:7px 10px;letter-spacing:.08em}
+}
 </style>
 
 <header class="banner">
@@ -393,7 +424,17 @@ html{scroll-behavior:smooth}
 <div class="wrap">
 
 <section id="kadro" class="ust">
-  <button class="split acc kbas" type="button" aria-expanded="false"><span>Lig kadroları · ImaginePerest + abyss</span><em class="say" id="kOzet">15 + 15</em><i class="ok" aria-hidden="true">&#9660;</i></button>
+  <button class="kpanel acc" type="button" aria-expanded="false">
+    <span class="kp-sol">
+      <span class="kp-bas">Lig Kadroları</span>
+      <span class="kp-alt">ImaginePerest + abyss · kimlerin gireceğini buradan düzenle</span>
+      <span class="kp-onizleme" id="kOnizleme"></span>
+    </span>
+    <span class="kp-sag">
+      <span class="kp-say" id="kOzet">15 + 15</span>
+      <span class="kp-tus"><i class="ok" aria-hidden="true">&#9660;</i><span class="kp-tus-yazi">KADROYU AÇ</span></span>
+    </span>
+  </button>
   <div class="accbody"><div class="accin">
     <p class="lede" style="margin-top:14px">Lig başlarken iki klanın kadrosunu birlikte kur. Her ismin yanında iki tuş var: <b style="color:var(--gold)">IP</b> ve <b style="color:var(--jade)">ABYSS</b>. Birine basınca o klanın kadrosuna girer, tekrar basınca çıkar. ImaginePerest'e girmeyenleri tek tuşla abyss'e kaydırabilirsin. Ok tuşlarıyla sırayı da değiştirebilirsin; liste lig performansına göre sıralı geliyor ve düzenlemen bu cihazda saklanır.</p>
     <div class="kadro-bar">
@@ -1038,12 +1079,14 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
 
 <script>
 (function(){
-  document.querySelectorAll('button.split.acc').forEach(function(b){
+  document.querySelectorAll('button.acc').forEach(function(b){
     var g = b.nextElementSibling;
     b.addEventListener('click', function(){
       var acik = b.getAttribute('aria-expanded') === 'true';
       b.setAttribute('aria-expanded', acik ? 'false' : 'true');
       g.classList.toggle('acik', !acik);
+      var yz = b.querySelector('.kp-tus-yazi');
+      if (yz) yz.textContent = acik ? 'KADROYU AÇ' : 'KAPAT';
     });
   });
 })();
@@ -1153,7 +1196,16 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
       x[1].className = 'kadro-say' + (x[0] === 'ab' ? ' ab' : '') + (n === HEDEF ? ' tam' : (n > HEDEF ? ' fazla' : ''));
     });
     var oz = document.getElementById('kOzet');
-    if (oz) oz.textContent = D.ip.length + ' + ' + D.ab.length;
+    if (oz) {
+      oz.textContent = D.ip.length + ' + ' + D.ab.length;
+      oz.className = 'kp-say' + ((D.ip.length > HEDEF || D.ab.length > HEDEF) ? ' fazla' : '');
+    }
+    var on = document.getElementById('kOnizleme');
+    if (on) {
+      var adi = function(t){ return harita[t] ? harita[t].n : ''; };
+      var p = D.ip.slice(0, 3).map(adi).join(' · ');
+      on.textContent = p ? (p + (D.ip.length > 3 ? ' +' + (D.ip.length - 3) + ' kişi daha…' : '')) : '';
+    }
     ['ip','ab'].forEach(function(k){
       var r = elList.querySelectorAll('.kli .kl.' + k + '.on-' + k);
       if (!r.length) return;
