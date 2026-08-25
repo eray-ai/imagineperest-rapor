@@ -220,6 +220,47 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
 .az{color:var(--faint);font-weight:400;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-left:6px}
 .foot{color:var(--faint);font-size:13.5px;line-height:1.7;margin:14px 0 0;max-width:88ch}
 .foot b{color:var(--dim)}
+
+
+/* ---------- kadro planlayıcı ---------- */
+.kadro-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 14px}
+.kadro-say{font-family:var(--serif);font-size:28px;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+.kadro-say.tam{color:var(--jade)}
+.kadro-say.fazla{color:var(--brick)}
+.kadro-say small{font-family:var(--body);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-left:9px;font-weight:600}
+.kbtn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);font:inherit;font-size:13px;
+  padding:7px 13px;border-radius:2px;cursor:pointer;letter-spacing:.04em}
+.kbtn:hover{border-color:var(--gold);color:var(--gold)}
+.klist{list-style:none;margin:0;padding:0;border:1px solid var(--line);background:var(--panel)}
+.kli{display:flex;align-items:center;gap:9px;padding:8px 12px;border-bottom:1px solid rgba(47,58,49,.5);font-size:15px}
+.kli:last-child{border-bottom:none}
+.kli.yok{background:rgba(19,23,20,.55)}
+.kli.yok .ad{color:var(--faint)}
+.kli.sur{opacity:.35}
+.kli .no{width:24px;flex:0 0 auto;color:var(--gold);font-variant-numeric:tabular-nums;font-size:13px;font-weight:600}
+.kli.yok .no{color:transparent}
+.kli .ad{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kli .ad i{font-style:normal;color:var(--faint);font-size:12px;margin-left:8px}
+.kli .puan{flex:0 0 auto;color:var(--gold);font-variant-numeric:tabular-nums;font-size:13px;width:34px;text-align:right}
+.kli.yok .puan{color:var(--faint)}
+.kli .puan.bos{color:var(--faint)}
+.kli .ops{flex:0 0 auto;display:flex;gap:4px;align-items:center}
+.kli .ops button{height:28px;display:grid;place-items:center;background:transparent;border:1px solid var(--line);
+  color:var(--dim);border-radius:2px;cursor:pointer;font:inherit;font-size:12px;line-height:1;padding:0 7px}
+.kli .ops .ok{width:28px;padding:0}
+.kli .ops button:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
+.kli .ops button:disabled{opacity:.22;cursor:default}
+.kli .tgl{min-width:96px;letter-spacing:.06em;font-weight:600}
+.kli .tgl.girer{border-color:rgba(111,176,122,.55);color:var(--jade);background:rgba(111,176,122,.09)}
+.kli .tgl.girmez{border-color:rgba(198,85,62,.5);color:var(--brick);background:rgba(198,85,62,.08)}
+.kayrak{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--panel2);
+  border-bottom:1px solid var(--line);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.kadro-not{color:var(--faint);font-size:13px;margin:12px 0 0}
+@media(max-width:560px){
+  .kli{font-size:14px;gap:6px;padding:8px 9px}
+  .kli .tgl{min-width:0;font-size:11px;padding:0 8px}
+  .kli .ad i{display:none}
+}
 </style>
 
 <header class="banner">
@@ -441,6 +482,19 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
   </div>
 </section>
 
+<section id="kadro">
+  <h2>Savaş Kadrosu Planı</h2>
+  <p class="lede">15'lik savaş ya da lig turu başlatırken kimleri yazacağını buradan hazırla. Her ismin yanındaki tuşa bas: <b style="color:var(--jade)">GİRECEK</b> olanlar üstte numaralanır, <b style="color:var(--brick)">GİRMEZ</b> dediklerin otomatik olarak listenin altına düşer. Ok tuşlarıyla sırayı da kaydırabilirsin. Düzenlemen bu cihazda saklanır, sayfayı kapatsan da durur.</p>
+  <div class="kadro-bar">
+    <span class="kadro-say" id="kSay">0<small>/ 15 girecek</small></span>
+    <span style="flex:1 1 auto"></span>
+    <button class="kbtn" id="kKopya">Listeyi kopyala</button>
+    <button class="kbtn" id="kSifir">Sıfırla</button>
+  </div>
+  <ul class="klist" id="kList"></ul>
+  <p class="kadro-not">Yanındaki sayı, Saldırı Kalitesi tablosundaki net ⭐/saldırı ortalaması. Tire olanların son 25 savaşta yeterli kaydı yok.</p>
+</section>
+
 <section>
   <h2>Temizlik Listesi</h2>
   <p class="lede">Son iki ayda ne savaşa girmiş ne de kayda değer bağış yapmışlar. Klan açıklamasında “TH16 ve üzeri” yazıyor — aşağıda TH8'e kadar inen isimler var. Bu 11 kişi 46 kişilik kontenjanın dörtte birini ölü tutuyor; yerlerine aktif TH17-18 alınırsa savaş kadrosu rahat 20v20'ye çıkar.</p>
@@ -614,5 +668,127 @@ document.getElementById('pfx').addEventListener('click',()=>dlg.close());
 dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
 </script>
 
+<script>
+(function(){
+  var UYE = [{"t":"#2CPG0JGQU","n":"IP✦Caraxes","r":"Lider","h":18,"v":2.58},{"t":"#22Y9GQV","n":"WpX⚡Murti","r":"Yrd. Lider","h":18,"v":2.5},{"t":"#Q0QYRPV9","n":"BERFOLAND","r":"Yrd. Lider","h":18,"v":2.21},{"t":"#QPJ29QCP0","n":"پرسپولیس","r":"Kıdemli","h":17,"v":2.33},{"t":"#2PJL22GLQ","n":"BadBoy™","r":"Yrd. Lider","h":16,"v":2.88},{"t":"#P8G0PGV88","n":"L.O.R.D","r":"Kıdemli","h":18,"v":2.12},{"t":"#GYR29JYRG","n":"kanewar","r":"Yrd. Lider","h":18,"v":0.91},{"t":"#RVGGJ9LV","n":"sparta","r":"Yrd. Lider","h":18,"v":1.68},{"t":"#GUUY0Y8VP","n":"✧G✧H✧o✧s✧T✧","r":"Yrd. Lider","h":18,"v":2.6},{"t":"#9VLR8V20R","n":"Gizem","r":"Yrd. Lider","h":18,"v":2.33},{"t":"#LR99J2L9","n":"EMİN","r":"Kıdemli","h":18,"v":1.4},{"t":"#8J8JRQYC8","n":"NameLessWarrior","r":"Yrd. Lider","h":18,"v":1.56},{"t":"#PJC2GVPUP","n":"Prime","r":"Yrd. Lider","h":17,"v":2.57},{"t":"#Q89Y8YP2C","n":"『 Dark Knight ☬","r":"Kıdemli","h":18,"v":1.3},{"t":"#L2RR0JUPL","n":"Джабир","r":"Kıdemli","h":18,"v":2.0},{"t":"#C9QYUGCY","n":"AhmetSezer","r":"Kıdemli","h":18,"v":2.43},{"t":"#YQPUVPVLC","n":"джабир","r":"Kıdemli","h":18,"v":1.43},{"t":"#80PURL8PR","n":"ouzbusiness","r":"Yrd. Lider","h":17,"v":null},{"t":"#PGUCL0CCJ","n":"AkE","r":"Kıdemli","h":18,"v":1.33},{"t":"#9VCJYCQVJ","n":"Sergen3230","r":"Kıdemli","h":18,"v":1.25},{"t":"#GJ09LV20G","n":"XISPOS","r":"Kıdemli","h":18,"v":1.0},{"t":"#2LGLPJPY0","n":"zelf","r":"Kıdemli","h":17,"v":null},{"t":"#2920RP2YR","n":"JOKER","r":"Kıdemli","h":17,"v":null},{"t":"#2LULR0JJ0","n":"savaşçı","r":"Kıdemli","h":18,"v":null},{"t":"#8VLJ0UJ8Y","n":"EFE","r":"Kıdemli","h":16,"v":null},{"t":"#GYUVQGCC0","n":"Yusuf TALİ","r":"Kıdemli","h":17,"v":null},{"t":"#GJ000J02G","n":"Mustafa","r":"Kıdemli","h":8,"v":null},{"t":"#V0PQ9YV0","n":"tehlike","r":"Kıdemli","h":18,"v":null},{"t":"#G2YQRYQUR","n":"⚡⚡Pence⚡⚡","r":"Kıdemli","h":11,"v":null},{"t":"#2RJ80G0RG","n":"☆ Yunus Reis ☆","r":"Kıdemli","h":14,"v":null},{"t":"#GJY89U90V","n":"BombardiloŞ Cro","r":"Kıdemli","h":9,"v":null},{"t":"#GR0VRUR88","n":"Hayri","r":"Üye","h":17,"v":null},{"t":"#JVQU98QP","n":"Depresyon","r":"Kıdemli","h":18,"v":null},{"t":"#2RJL8UU2J","n":"UnConScioNabLe","r":"Kıdemli","h":17,"v":null},{"t":"#JYPRYUG","n":"✴✴£ra¥✴✴","r":"Kıdemli","h":16,"v":null},{"t":"#Q2UULUVQ9","n":"Sadiqov085","r":"Kıdemli","h":18,"v":null},{"t":"#2JU99VJ0","n":"TAHA BEY","r":"Kıdemli","h":15,"v":null},{"t":"#LVG0L9V99","n":"kurt","r":"Kıdemli","h":17,"v":null},{"t":"#GVV9UPP28","n":"Ｉam丨SORRY亗","r":"Kıdemli","h":12,"v":null},{"t":"#8RGUR2UV2","n":"A⚔️K ✨AD HOC✨","r":"Kıdemli","h":18,"v":null},{"t":"#G0YPGCLJ0","n":"K.S ROCCO","r":"Kıdemli","h":18,"v":null},{"t":"#GPY0QG8PP","n":"K.S SWOXY","r":"Kıdemli","h":18,"v":null},{"t":"#PVVRCJJ8V","n":"Ayyıldız time","r":"Kıdemli","h":17,"v":null},{"t":"#GRPQQLPCU","n":"REUSE-KAK-22TR","r":"Kıdemli","h":11,"v":null},{"t":"#2P8LP882G","n":"CandyGirl","r":"Kıdemli","h":10,"v":null},{"t":"#YVG82PY29","n":"irem__","r":"Kıdemli","h":17,"v":null}];
+  var KEY = 'ip-kadro-v2', HEDEF = 15;
+  var harita = {}; UYE.forEach(function(u){ harita[u.t] = u; });
+  var elList = document.getElementById('kList'), elSay = document.getElementById('kSay');
+
+  function puanSirali(){
+    return UYE.slice().sort(function(a,b){
+      return (b.v === null ? -1 : b.v) - (a.v === null ? -1 : a.v);
+    }).map(function(u){ return u.t; });
+  }
+  function varsayilan(){
+    var s = puanSirali();
+    return { sira: s, girer: s.slice(0, HEDEF) };
+  }
+  var D;
+  try { D = JSON.parse(localStorage.getItem(KEY)); } catch(e){ D = null; }
+  if (!D || !Array.isArray(D.sira) || !Array.isArray(D.girer)) D = varsayilan();
+  D.sira = D.sira.filter(function(t){ return harita[t]; });
+  puanSirali().forEach(function(t){ if (D.sira.indexOf(t) < 0) D.sira.push(t); });
+  D.girer = D.girer.filter(function(t){ return harita[t]; });
+
+  function girer(t){ return D.girer.indexOf(t) > -1; }
+  function kaydet(){ try { localStorage.setItem(KEY, JSON.stringify(D)); } catch(e){} }
+  function duzen(){
+    var a = D.sira.filter(girer), b = D.sira.filter(function(t){ return !girer(t); });
+    D.sira = a.concat(b);
+  }
+  function ciz(){
+    duzen();
+    elList.innerHTML = '';
+    var n = 0, bandVar = false;
+    D.sira.forEach(function(t){
+      var u = harita[t], ic = girer(t);
+      if (!ic && !bandVar) {
+        bandVar = true;
+        var band = document.createElement('li');
+        band.className = 'kayrak';
+        band.textContent = 'Savaşa girmeyecekler';
+        elList.appendChild(band);
+      }
+      if (ic) n++;
+      var li = document.createElement('li');
+      li.className = 'kli' + (ic ? '' : ' yok');
+      li.draggable = ic; li.dataset.t = t;
+      var p = u.v === null ? '<span class="puan bos">–</span>' : '<span class="puan">' + u.v.toFixed(2) + '</span>';
+      li.innerHTML =
+        '<span class="no">' + (ic ? n : '') + '</span>' +
+        '<span class="ad">' + u.n + '<i>TH' + u.h + '</i></span>' + p +
+        '<span class="ops">' +
+          (ic ? '<button class="ok yuk" title="Yukarı">&#9650;</button><button class="ok asa" title="Aşağı">&#9660;</button>' : '') +
+          '<button class="tgl ' + (ic ? 'girer' : 'girmez') + '">' + (ic ? 'GİRECEK' : 'GİRMEZ') + '</button>' +
+        '</span>';
+      elList.appendChild(li);
+    });
+    var ilk = D.sira.filter(girer);
+    if (ilk.length) {
+      var satirlar = elList.querySelectorAll('.kli:not(.yok)');
+      if (satirlar[0]) satirlar[0].querySelector('.yuk').disabled = true;
+      if (satirlar[satirlar.length - 1]) satirlar[satirlar.length - 1].querySelector('.asa').disabled = true;
+    }
+    elSay.innerHTML = ilk.length + '<small>/ ' + HEDEF + ' girecek</small>';
+    elSay.className = 'kadro-say' + (ilk.length === HEDEF ? ' tam' : (ilk.length > HEDEF ? ' fazla' : ''));
+  }
+  elList.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    var t = b.closest('.kli').dataset.t;
+    if (b.classList.contains('tgl')) {
+      var i = D.girer.indexOf(t);
+      if (i > -1) D.girer.splice(i, 1); else D.girer.push(t);
+    } else {
+      var ic = D.sira.filter(girer), j = ic.indexOf(t);
+      if (b.classList.contains('yuk') && j > 0) ic.splice(j - 1, 0, ic.splice(j, 1)[0]);
+      else if (b.classList.contains('asa') && j > -1 && j < ic.length - 1) ic.splice(j + 1, 0, ic.splice(j, 1)[0]);
+      D.sira = ic.concat(D.sira.filter(function(x){ return !girer(x); }));
+    }
+    kaydet(); ciz();
+  });
+  var suru = null;
+  elList.addEventListener('dragstart', function(e){
+    var li = e.target.closest('.kli'); if (!li || !li.draggable) return;
+    suru = li.dataset.t; li.classList.add('sur');
+  });
+  elList.addEventListener('dragend', function(e){
+    var li = e.target.closest('.kli'); if (li) li.classList.remove('sur'); suru = null;
+  });
+  elList.addEventListener('dragover', function(e){ e.preventDefault(); });
+  elList.addEventListener('drop', function(e){
+    e.preventDefault(); if (!suru) return;
+    var hedef = e.target.closest('.kli'); if (!hedef || hedef.dataset.t === suru) return;
+    if (!girer(hedef.dataset.t)) { var k = D.girer.indexOf(suru); if (k > -1) D.girer.splice(k, 1); }
+    else {
+      var ic = D.sira.filter(girer);
+      ic.splice(ic.indexOf(suru), 1);
+      ic.splice(ic.indexOf(hedef.dataset.t), 0, suru);
+      D.sira = ic.concat(D.sira.filter(function(x){ return !girer(x); }));
+    }
+    kaydet(); ciz();
+  });
+  document.getElementById('kSifir').addEventListener('click', function(){
+    D = varsayilan(); kaydet(); ciz();
+  });
+  document.getElementById('kKopya').addEventListener('click', function(){
+    var m = 'ImaginePerest savaş kadrosu\n' + D.sira.filter(girer).map(function(t, i){
+      return (i + 1) + '. ' + harita[t].n + ' (TH' + harita[t].h + ')';
+    }).join('\n');
+    var b = this;
+    function ok(){ b.textContent = 'Kopyalandı ✓'; setTimeout(function(){ b.textContent = 'Listeyi kopyala'; }, 1600); }
+    function yedek(){
+      var ta = document.createElement('textarea');
+      ta.value = m; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); ok(); } catch(e){}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(m).then(ok, yedek);
+    else yedek();
+  });
+  ciz();
+})();
+</script>
 </body>
 </html>
