@@ -364,6 +364,9 @@ html{scroll-behavior:smooth}
   .kli .ops .kl{padding:0 7px;font-size:10.5px}
   .kli .ops .ok{width:24px}
 }
+
+.kbtn.kvurgu{border-color:rgba(242,177,52,.55);color:var(--gold);background:rgba(242,177,52,.1)}
+.kbtn.kvurgu:hover{border-color:var(--gold);background:rgba(242,177,52,.18)}
 </style>
 
 <header class="banner">
@@ -397,11 +400,13 @@ html{scroll-behavior:smooth}
       <span class="kadro-say" id="kSayIP">0<small>/ 15 ImaginePerest</small></span>
       <span class="kadro-say ab" id="kSayAB">0<small>/ 15 abyss</small></span>
       <span style="flex:1 1 auto"></span>
+      <button class="kbtn kvurgu" id="kBaglanti">Telefona gönder · bağlantı kopyala</button>
       <button class="kbtn" id="kKopya">Listeleri kopyala</button>
       <button class="kbtn" id="kGeri" hidden>Eski kaydımı geri getir</button>
       <button class="kbtn" id="kSifir">Sıfırla</button>
     </div>
     <ul class="klist" id="kList"></ul>
+    <p class="kadro-not" id="kBilgi" hidden></p>
     <p class="kadro-not"><b style="color:var(--dim)">Üyelikler 25 Ağustos 2026'da canlı olarak doğrulandı.</b> Rozet, kişinin <i>şu anda</i> hangi klanda olduğunu gösterir — kadroya yazmadan önce klan değiştirmesi gerekenleri “Listeleri kopyala” çıktısı ayrıca listeler.<br>Puanlar lig ⭐/saldırı ortalaması: soldaki ImaginePerest ligi, sağdaki abyss ligi. Tire, o klanda lig oynamamış demek.</p>
   </div></div>
 </section>
@@ -1077,6 +1082,29 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
   }
   if (!D || !Array.isArray(D.ip) || !Array.isArray(D.ab) || !Array.isArray(D.sira)) D = varsayilan();
   if (!Array.isArray(D.sira)) D.sira = [];
+
+  // --- kadroyu bağlantıya gömme / bağlantıdan okuma (cihazlar arası taşımak için) ---
+  function b64e(x){ return btoa(unescape(encodeURIComponent(x))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); }
+  function b64d(x){ x = x.replace(/-/g,'+').replace(/_/g,'/'); return decodeURIComponent(escape(atob(x))); }
+  var indeks = {}; UYE.forEach(function(u,i){ indeks[u.t] = i; });
+  function paketle(){
+    return b64e(JSON.stringify({ i: D.ip.map(function(t){ return indeks[t]; }), a: D.ab.map(function(t){ return indeks[t]; }) }));
+  }
+  var bilgi = document.getElementById('kBilgi');
+  function not(metin){ if (bilgi) { bilgi.innerHTML = metin; bilgi.hidden = false; } }
+  (function bagdanOku(){
+    var m = /[#&?]k=([A-Za-z0-9\-_]+)/.exec(location.hash + location.search);
+    if (!m) return;
+    try {
+      var p = JSON.parse(b64d(m[1]));
+      var al = function(dizi){ return (dizi || []).map(function(i){ return UYE[i] && UYE[i].t; }).filter(Boolean); };
+      var ip = al(p.i), ab = al(p.a);
+      if (!ip.length && !ab.length) return;
+      D = { ip: ip, ab: ab.filter(function(t){ return ip.indexOf(t) < 0; }), sira: sirala('ip','ipt') };
+      kaydet();
+      not('<b style="color:var(--jade)">Bağlantıdaki kadro yüklendi ve bu cihaza kaydedildi.</b>');
+    } catch(e){}
+  })();
   ['ip','ab','sira'].forEach(function(k){ D[k] = D[k].filter(function(t){ return harita[t]; }); });
   sirala('ip','ipt').forEach(function(t){ if (D.sira.indexOf(t) < 0) D.sira.push(t); });
   D.ab = D.ab.filter(function(t){ return D.ip.indexOf(t) < 0; });
@@ -1163,6 +1191,27 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
     if (!h) { kaydet(); ciz(); return; }
     D[h].splice(D[h].indexOf(li.dataset.t), 0, suru);
     kaydet(); ciz();
+  });
+  document.getElementById('kBaglanti').addEventListener('click', function(){
+    var url = location.origin + location.pathname + '#kadro&k=' + paketle();
+    var b = this;
+    function ok(){
+      b.textContent = 'Bağlantı kopyalandı ✓';
+      not('Bağlantıyı telefonuna gönder (WhatsApp, not, mail — fark etmez). Telefonda açtığında bu kadro oraya da yüklenir.<br><span style="word-break:break-all;color:var(--dim);font-size:12px">' + url + '</span>');
+      setTimeout(function(){ b.textContent = 'Telefona gönder · bağlantı kopyala'; }, 2200);
+    }
+    function yedek(){
+      var ta = document.createElement('textarea');
+      ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); ok(); } catch(e){ not('Kopyalanamadı, elle al:<br><span style="word-break:break-all">' + url + '</span>'); }
+      document.body.removeChild(ta);
+    }
+    if (navigator.share && /Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+      navigator.share({ title: 'Lig kadroları', url: url }).then(function(){ ok(); }, yedek);
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(ok, yedek);
+    } else yedek();
   });
   document.getElementById('kSifir').addEventListener('click', function(){ D = varsayilan(); kaydet(); ciz(); });
 
