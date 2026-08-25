@@ -400,13 +400,16 @@ html{scroll-behavior:smooth}
       <span class="kadro-say" id="kSayIP">0<small>/ 15 ImaginePerest</small></span>
       <span class="kadro-say ab" id="kSayAB">0<small>/ 15 abyss</small></span>
       <span style="flex:1 1 auto"></span>
-      <button class="kbtn kvurgu" id="kBaglanti">Telefona gönder · bağlantı kopyala</button>
+      <button class="kbtn kvurgu" id="kBulut">Herkese kaydet</button>
+      <button class="kbtn" id="kGetir">Sunucudakini getir</button>
+      <button class="kbtn" id="kBaglanti">Bağlantı kopyala</button>
       <button class="kbtn" id="kKopya">Listeleri kopyala</button>
       <button class="kbtn" id="kGeri" hidden>Eski kaydımı geri getir</button>
       <button class="kbtn" id="kSifir">Sıfırla</button>
     </div>
     <ul class="klist" id="kList"></ul>
     <p class="kadro-not" id="kBilgi" hidden></p>
+    <p class="kadro-not"><b style="color:var(--gold)">Herkese kaydet</b> → kadroyu sunucuya gönderir, sayfayı açan herkes (telefonun dahil) aynı kadroyu görür. İlk seferinde düzenleme kodunu ve adını sorar, sonra hatırlar. <b style="color:var(--dim)">Sunucudakini getir</b> → başkasının kaydettiği kadroyu çeker. Sayfa açılırken sunucudaki kadro zaten otomatik yüklenir; sen düzenleme yaptıysan senin düzenlemen korunur, kaydedene kadar kimse görmez.</p>
     <p class="kadro-not"><b style="color:var(--dim)">Üyelikler 25 Ağustos 2026'da canlı olarak doğrulandı.</b> Rozet, kişinin <i>şu anda</i> hangi klanda olduğunu gösterir — kadroya yazmadan önce klan değiştirmesi gerekenleri “Listeleri kopyala” çıktısı ayrıca listeler.<br>Puanlar lig ⭐/saldırı ortalaması: soldaki ImaginePerest ligi, sağdaki abyss ligi. Tire, o klanda lig oynamamış demek.</p>
   </div></div>
 </section>
@@ -1171,7 +1174,7 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
       if (b.classList.contains('yuk') && j > 0) l.splice(j - 1, 0, l.splice(j, 1)[0]);
       else if (b.classList.contains('asa') && j < l.length - 1) l.splice(j + 1, 0, l.splice(j, 1)[0]);
     }
-    kaydet(); ciz();
+    kirli = true; kaydet(); ciz();
   });
   var suru = null;
   elList.addEventListener('dragstart', function(e){
@@ -1188,10 +1191,87 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
     var k = nere(suru), h = nere(li.dataset.t);
     if (!k) return;
     D[k].splice(D[k].indexOf(suru), 1);
-    if (!h) { kaydet(); ciz(); return; }
+    if (!h) { kirli = true; kaydet(); ciz(); return; }
     D[h].splice(D[h].indexOf(li.dataset.t), 0, suru);
-    kaydet(); ciz();
+    kirli = true; kaydet(); ciz();
   });
+  // ================= sunucu senkronu (tüm cihazlar aynı kadroyu görsün) =================
+  var API = 'https://kgvadalupxlrqzcsixfq.supabase.co';
+  var ANON = 'sb_publishable_PLWMOhLbvhUUO2gOtQAyZQ_oXCT4HTO';
+  var KOD_KEY = 'ip-kadro-kod';
+  var kirli = false;                       // kaydedilmemiş değişiklik var mı
+
+  function zamanYaz(t){
+    if (!t) return '';
+    var d = new Date(t);
+    return d.toLocaleDateString('tr-TR', { day:'numeric', month:'long' }) + ' ' +
+           d.toLocaleTimeString('tr-TR', { hour:'2-digit', minute:'2-digit' });
+  }
+  function durum(metin, renk){
+    not('<b style="color:' + (renk || 'var(--dim)') + '">' + metin + '</b>');
+  }
+  function sunucudanAl(sessiz){
+    return fetch(API + '/rest/v1/kadro?id=eq.imagineperest&select=ip,ab,guncelleyen,updated_at', { headers: { apikey: ANON } })
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        var s = j && j[0]; if (!s) return null;
+        s.ip = (s.ip || []).filter(function(t){ return harita[t]; });
+        s.ab = (s.ab || []).filter(function(t){ return harita[t]; });
+        return s;
+      })
+      .catch(function(){ if (!sessiz) durum('Sunucuya ulaşılamadı — bu cihazdaki kadro gösteriliyor.', 'var(--clay)'); return null; });
+  }
+  function uygula(s){
+    D = { ip: s.ip, ab: s.ab.filter(function(t){ return s.ip.indexOf(t) < 0; }), sira: sirala('ip','ipt') };
+    kaydet(); kirli = false; ciz();
+    durum('Sunucudaki kadro yüklendi · ' + zamanYaz(s.updated_at) + (s.guncelleyen ? ' · kaydeden: ' + s.guncelleyen : ''), 'var(--jade)');
+  }
+  document.getElementById('kGetir').addEventListener('click', function(){
+    sunucudanAl().then(function(s){
+      if (!s) return;
+      if (!s.ip.length && !s.ab.length) { durum('Sunucuda henüz kayıtlı kadro yok. “Herkese kaydet” ile ilkini sen kur.', 'var(--clay)'); return; }
+      uygula(s);
+    });
+  });
+  document.getElementById('kBulut').addEventListener('click', function(){
+    var kod = null;
+    try { kod = localStorage.getItem(KOD_KEY); } catch(e){}
+    if (!kod) kod = prompt('Düzenleme kodu:');
+    if (!kod) return;
+    var b = this, eskiYazi = b.textContent;
+    b.textContent = 'Kaydediliyor…';
+    var kim = null;
+    try { kim = localStorage.getItem('ip-kadro-kim'); } catch(e){}
+    if (!kim) { kim = prompt('Adın (kimin kaydettiği görünsün):') || ''; try { localStorage.setItem('ip-kadro-kim', kim); } catch(e){} }
+    fetch(API + '/rest/v1/rpc/kadro_kaydet', {
+      method: 'POST',
+      headers: { apikey: ANON, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_kod: kod, p_ip: D.ip, p_ab: D.ab, p_kim: kim })
+    }).then(function(r){ return r.json().then(function(j){ return { ok: r.ok, j: j }; }); })
+      .then(function(x){
+        b.textContent = eskiYazi;
+        if (!x.ok) {
+          if (x.j && x.j.message === 'kod_hatali') { try { localStorage.removeItem(KOD_KEY); } catch(e){} durum('Düzenleme kodu yanlış — kaydedilmedi.', 'var(--brick)'); }
+          else durum('Kaydedilemedi. İnternet bağlantını kontrol et.', 'var(--brick)');
+          return;
+        }
+        try { localStorage.setItem(KOD_KEY, kod); } catch(e){}
+        kirli = false;
+        durum('Kaydedildi · ' + zamanYaz(x.j) + ' — artık tüm cihazlarda ve klanda bu kadro görünüyor.', 'var(--jade)');
+      })
+      .catch(function(){ b.textContent = eskiYazi; durum('Kaydedilemedi. İnternet bağlantını kontrol et.', 'var(--brick)'); });
+  });
+  // açılışta sunucudakini getir (yerelde kaydedilmemiş değişiklik yoksa)
+  if (!/[#&?]k=/.test(location.hash + location.search)) {
+    sunucudanAl(true).then(function(s){
+      if (!s || (!s.ip.length && !s.ab.length)) return;
+      var ayni = JSON.stringify(s.ip) === JSON.stringify(D.ip) && JSON.stringify(s.ab) === JSON.stringify(D.ab);
+      if (ayni) { durum('Sunucuyla eşleşiyor · ' + zamanYaz(s.updated_at) + (s.guncelleyen ? ' · kaydeden: ' + s.guncelleyen : '')); return; }
+      if (!kirli) uygula(s);
+      else durum('Sunucuda daha yeni bir kadro var. “Sunucudakini getir” ile alabilir, “Herkese kaydet” ile kendi kadronu gönderebilirsin.', 'var(--clay)');
+    });
+  }
+
   document.getElementById('kBaglanti').addEventListener('click', function(){
     var url = location.origin + location.pathname + '#kadro&k=' + paketle();
     var b = this;
@@ -1213,7 +1293,7 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
       navigator.clipboard.writeText(url).then(ok, yedek);
     } else yedek();
   });
-  document.getElementById('kSifir').addEventListener('click', function(){ D = varsayilan(); kaydet(); ciz(); });
+  document.getElementById('kSifir').addEventListener('click', function(){ D = varsayilan(); kirli = true; kaydet(); ciz(); });
 
   // Anahtar değişikliği yüzünden kaybolan eski kayıtlar için tek tuşla geri alma
   var eskiler = ['ip-kadro-v4','ip-kadro-v3','ip-kadro-v2'];
@@ -1234,7 +1314,7 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
     ['ip','ab','sira'].forEach(function(k){ D[k] = D[k].filter(function(t){ return harita[t]; }); });
     sirala('ip','ipt').forEach(function(t){ if (D.sira.indexOf(t) < 0) D.sira.push(t); });
     D.ab = D.ab.filter(function(t){ return D.ip.indexOf(t) < 0; });
-    kaydet(); ciz();
+    kirli = true; kaydet(); ciz();
     gBtn.textContent = 'Geri getirildi ✓';
     setTimeout(function(){ gBtn.textContent = 'Eski kaydımı geri getir'; }, 2000);
   });
