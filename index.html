@@ -300,6 +300,13 @@ html{scroll-behavior:smooth}
 .kayrak.ab{color:var(--jade)}
 .kayrak.ip{color:var(--gold)}
 @media(max-width:560px){.kli .puanlar span{width:34px}.kli .ops .kl{min-width:40px;font-size:10px;padding:0 5px}}
+
+.uye{display:inline-block;margin-left:8px;font-size:9.5px;letter-spacing:.1em;font-weight:700;
+  padding:1px 5px;border-radius:2px;vertical-align:1px}
+.u-ip{background:rgba(242,177,52,.16);color:var(--gold)}
+.u-ab{background:rgba(111,176,122,.16);color:var(--jade)}
+.u-yok{background:rgba(198,85,62,.16);color:var(--brick)}
+.cik{color:var(--brick);font-weight:600;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin-left:7px}
 </style>
 
 <header class="banner">
@@ -337,7 +344,7 @@ html{scroll-behavior:smooth}
       <button class="kbtn" id="kSifir">Sıfırla</button>
     </div>
     <ul class="klist" id="kList"></ul>
-    <p class="kadro-not">Puanlar lig ⭐/saldırı ortalaması: soldaki ImaginePerest ligi, sağdaki abyss ligi. Tire, o klanda lig oynamamış demek.</p>
+    <p class="kadro-not"><b style="color:var(--dim)">Üyelikler 25 Ağustos 2026'da canlı olarak doğrulandı.</b> Rozet, kişinin <i>şu anda</i> hangi klanda olduğunu gösterir — kadroya yazmadan önce klan değiştirmesi gerekenleri “Listeleri kopyala” çıktısı ayrıca listeler.<br>Puanlar lig ⭐/saldırı ortalaması: soldaki ImaginePerest ligi, sağdaki abyss ligi. Tire, o klanda lig oynamamış demek.</p>
   </div></div>
 </section>
 
@@ -580,7 +587,7 @@ html{scroll-behavior:smooth}
   <ol class="honor">
       <li class="hrow" data-p="#RVGGJ9LV" tabindex="0" role="button">
         <span class="hrank">1</span>
-        <span class="hname">sparta <small class="az">IP kadrosunda</small><em>TH18 · 7 tur</em></span>
+        <span class="hname">sparta <small class="az">şu an ImaginePerest'te</small><em>TH18 · 7 tur</em></span>
         <span class="hbar"><i style="width:100.0%"></i><b>3.00<small>⭐/saldırı</small></b></span>
         <span class="hnum">21<small>yıldız</small></span>
         <span class="hnum">7<small>üç yıldız</small></span>
@@ -643,7 +650,7 @@ html{scroll-behavior:smooth}
       </li>
       <li class="hrow" data-p="#GR0VRUR88" tabindex="0" role="button">
         <span class="hrank">8</span>
-        <span class="hname">Hayri <small class="az">IP kadrosunda</small><em>TH16 · 7 tur</em></span>
+        <span class="hname">Hayri <small class="az">şu an ImaginePerest'te</small><em>TH16 · 7 tur</em></span>
         <span class="hbar"><i style="width:85.7%"></i><b>2.57<small>⭐/saldırı</small></b></span>
         <span class="hnum">18<small>yıldız</small></span>
         <span class="hnum">5<small>üç yıldız</small></span>
@@ -661,7 +668,7 @@ html{scroll-behavior:smooth}
       </li>
       <li class="hrow" data-p="#PJC2GVPUP" tabindex="0" role="button">
         <span class="hrank">10</span>
-        <span class="hname">NİMO <small class="az">IP kadrosunda</small><em>TH16 · 6 tur</em></span>
+        <span class="hname">NİMO <small class="az">şu an ImaginePerest'te</small><em>TH16 · 6 tur</em></span>
         <span class="hbar"><i style="width:94.4%"></i><b>2.83<small>⭐/saldırı</small></b></span>
         <span class="hnum">17<small>yıldız</small></span>
         <span class="hnum">5<small>üç yıldız</small></span>
@@ -679,7 +686,7 @@ html{scroll-behavior:smooth}
       </li>
       <li class="hrow" data-p="#QGVYVYYYG" tabindex="0" role="button">
         <span class="hrank">12</span>
-        <span class="hname">A.R.E.S<em>TH15 · 7 tur</em></span>
+        <span class="hname">A.R.E.S <small class="cik">klandan ayrıldı</small><em>TH15 · 7 tur</em></span>
         <span class="hbar"><i style="width:76.2%"></i><b>2.29<small>⭐/saldırı</small></b></span>
         <span class="hnum">16<small>yıldız</small></span>
         <span class="hnum">4<small>üç yıldız</small></span>
@@ -688,7 +695,7 @@ html{scroll-behavior:smooth}
       </li>
       <li class="hrow" data-p="#9P08R2R8L" tabindex="0" role="button">
         <span class="hrank">13</span>
-        <span class="hname">£|¡f<em>TH16 · 7 tur</em></span>
+        <span class="hname">£|¡f <small class="cik">klandan ayrıldı</small><em>TH16 · 7 tur</em></span>
         <span class="hbar"><i style="width:76.2%"></i><b>2.29<small>⭐/saldırı</small></b></span>
         <span class="hnum">16<small>yıldız</small></span>
         <span class="hnum">3<small>üç yıldız</small></span>
@@ -977,8 +984,8 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
 </script>
 <script>
 (function(){
-  var UYE = [{"t":"#2PJL22GLQ","n":"BadBoy™","h":16,"ev":"ip","ip":3.0,"ipt":10,"ab":null,"abt":0,"gen":3.0},{"t":"#C9QYUGCY","n":"AhmetSezer","h":18,"ev":"ip","ip":3.0,"ipt":7,"ab":null,"abt":0,"gen":2.89},{"t":"#2CPG0JGQU","n":"IP✦Caraxes","h":18,"ev":"ip","ip":2.93,"ipt":14,"ab":null,"abt":0,"gen":2.94},{"t":"#GYR29JYRG","n":"kanewar","h":18,"ev":"ip","ip":2.86,"ipt":14,"ab":null,"abt":0,"gen":2.75},{"t":"#GUUY0Y8VP","n":"✧G✧H✧o✧s✧T✧","h":18,"ev":"ip","ip":2.86,"ipt":7,"ab":null,"abt":0,"gen":2.65},{"t":"#PJC2GVPUP","n":"Prime","h":17,"ev":"ip","ip":2.86,"ipt":7,"ab":2.83,"abt":6,"gen":2.54},{"t":"#P8G0PGV88","n":"L.O.R.D","h":18,"ev":"ip","ip":2.71,"ipt":14,"ab":null,"abt":0,"gen":2.81},{"t":"#22Y9GQV","n":"WpX⚡Murti","h":18,"ev":"ip","ip":2.71,"ipt":14,"ab":null,"abt":0,"gen":2.76},{"t":"#8J8JRQYC8","n":"NameLessWarrior","h":18,"ev":"ip","ip":2.71,"ipt":7,"ab":null,"abt":0,"gen":2.64},{"t":"#Q0QYRPV9","n":"BERFOLAND","h":18,"ev":"ip","ip":2.64,"ipt":14,"ab":null,"abt":0,"gen":2.71},{"t":"#QPJ29QCP0","n":"پرسپولیس","h":17,"ev":"ip","ip":2.57,"ipt":14,"ab":null,"abt":0,"gen":2.59},{"t":"#Q89Y8YP2C","n":"『 Dark Knight ☬","h":18,"ev":"ip","ip":2.57,"ipt":7,"ab":null,"abt":0,"gen":2.45},{"t":"#80PURL8PR","n":"ouzbusiness","h":17,"ev":"ip","ip":2.5,"ipt":6,"ab":null,"abt":0,"gen":2.5},{"t":"#YQPUVPVLC","n":"джабир","h":18,"ev":"ip","ip":2.44,"ipt":10,"ab":null,"abt":0,"gen":2.45},{"t":"#RVGGJ9LV","n":"sparta","h":18,"ev":"ip","ip":2.43,"ipt":7,"ab":3.0,"abt":7,"gen":2.73},{"t":"#9VLR8V20R","n":"Gizem","h":18,"ev":"ip","ip":2.43,"ipt":7,"ab":null,"abt":0,"gen":2.59},{"t":"#L2RR0JUPL","n":"Джабир","h":18,"ev":"ip","ip":2.4,"ipt":11,"ab":null,"abt":0,"gen":2.5},{"t":"#LR99J2L9","n":"EMİN","h":18,"ev":"ip","ip":2.36,"ipt":11,"ab":null,"abt":0,"gen":2.25},{"t":"#2LGLPJPY0","n":"zelf","h":17,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":3.0},{"t":"#2920RP2YR","n":"JOKER","h":17,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":3.0},{"t":"#8QC90CJJR","n":"Kral","h":16,"ev":"ab","ip":null,"ipt":0,"ab":3.0,"abt":2,"gen":3.0},{"t":"#LVCQ08PLC","n":"》TR X MERT《","h":15,"ev":"ab","ip":null,"ipt":0,"ab":2.86,"abt":7,"gen":2.86},{"t":"#20LLCJVJ2","n":"Maered","h":16,"ev":"ab","ip":null,"ipt":0,"ab":2.86,"abt":7,"gen":2.86},{"t":"#VG0U22GL","n":"Tortuga","h":16,"ev":"ab","ip":null,"ipt":0,"ab":2.86,"abt":7,"gen":2.86},{"t":"#8PURC9YCG","n":"Diyar","h":16,"ev":"ab","ip":null,"ipt":0,"ab":2.86,"abt":7,"gen":2.86},{"t":"#PCR22CCY2","n":"Game Of ThroneS","h":16,"ev":"ab","ip":null,"ipt":0,"ab":2.75,"abt":4,"gen":2.75},{"t":"#9RRCQJCVQ","n":"OVERLORD","h":17,"ev":"ab","ip":null,"ipt":0,"ab":2.71,"abt":7,"gen":2.71},{"t":"#2CVGQ82CY","n":"Riddik","h":16,"ev":"ab","ip":null,"ipt":0,"ab":2.71,"abt":7,"gen":2.71},{"t":"#GJ09LV20G","n":"XISPOS","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":2.67},{"t":"#PRY20RV0P","n":"DeMaNiTuS","h":15,"ev":"ab","ip":null,"ipt":0,"ab":2.67,"abt":6,"gen":2.67},{"t":"#UPGPGCVU","n":"hydra","h":17,"ev":"ab","ip":null,"ipt":0,"ab":2.57,"abt":7,"gen":2.57},{"t":"#9VCJYCQVJ","n":"Sergen3230","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":2.5},{"t":"#R0YR2VULL","n":"hayri","h":15,"ev":"ab","ip":null,"ipt":0,"ab":2.5,"abt":4,"gen":2.5},{"t":"#PGUCL0CCJ","n":"AkE","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":2.33},{"t":"#9P08R2R8L","n":"£|¡f","h":16,"ev":"ab","ip":null,"ipt":0,"ab":2.29,"abt":7,"gen":2.29},{"t":"#QGVYVYYYG","n":"A.R.E.S","h":15,"ev":"ab","ip":null,"ipt":0,"ab":2.29,"abt":7,"gen":2.29},{"t":"#YCG982JJU","n":"ɪᴘ✦Cannibal","h":16,"ev":"ab","ip":null,"ipt":0,"ab":2.0,"abt":6,"gen":2.0},{"t":"#2LULR0JJ0","n":"savaşçı","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#8VLJ0UJ8Y","n":"EFE","h":16,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GYUVQGCC0","n":"Yusuf TALİ","h":17,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GJ000J02G","n":"Mustafa","h":8,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#V0PQ9YV0","n":"tehlike","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#G2YQRYQUR","n":"⚡⚡Pence⚡⚡","h":11,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#2RJ80G0RG","n":"☆ Yunus Reis ☆","h":14,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GJY89U90V","n":"BombardiloŞ Cro","h":9,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GR0VRUR88","n":"Hayri","h":17,"ev":"ip","ip":null,"ipt":0,"ab":2.57,"abt":7,"gen":null},{"t":"#JVQU98QP","n":"Depresyon","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#2RJL8UU2J","n":"UnConScioNabLe","h":17,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#JYPRYUG","n":"✴✴£ra¥✴✴","h":16,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#Q2UULUVQ9","n":"Sadiqov085","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#2JU99VJ0","n":"TAHA BEY","h":15,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#LVG0L9V99","n":"kurt","h":17,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GVV9UPP28","n":"Ｉam丨SORRY亗","h":12,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#8RGUR2UV2","n":"A⚔️K ✨AD HOC✨","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#G0YPGCLJ0","n":"K.S ROCCO","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GPY0QG8PP","n":"K.S SWOXY","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#PVVRCJJ8V","n":"Ayyıldız time","h":17,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GRPQQLPCU","n":"REUSE-KAK-22TR","h":11,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#2P8LP882G","n":"CandyGirl","h":10,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#YVG82PY29","n":"irem__","h":17,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null}];
-  var KEY = 'ip-kadro-v4', HEDEF = 15;
+  var UYE = [{"t":"#2PJL22GLQ","n":"BadBoy™","h":16,"k":"ip","ip":3.0,"ipt":10,"ab":null,"abt":0,"gen":3.0},{"t":"#C9QYUGCY","n":"AhmetSezer","h":18,"k":"ip","ip":3.0,"ipt":7,"ab":null,"abt":0,"gen":2.89},{"t":"#2CPG0JGQU","n":"IP✦Caraxes","h":18,"k":"ip","ip":2.93,"ipt":14,"ab":null,"abt":0,"gen":2.94},{"t":"#GYR29JYRG","n":"kanewar","h":18,"k":"ip","ip":2.86,"ipt":14,"ab":null,"abt":0,"gen":2.75},{"t":"#GUUY0Y8VP","n":"✧G✧H✧o✧s✧T✧","h":18,"k":"ip","ip":2.86,"ipt":7,"ab":null,"abt":0,"gen":2.65},{"t":"#PJC2GVPUP","n":"Prime","h":17,"k":"ip","ip":2.86,"ipt":7,"ab":2.83,"abt":6,"gen":2.54},{"t":"#P8G0PGV88","n":"L.O.R.D","h":18,"k":"ip","ip":2.71,"ipt":14,"ab":null,"abt":0,"gen":2.81},{"t":"#22Y9GQV","n":"WpX⚡Murti","h":18,"k":"ip","ip":2.71,"ipt":14,"ab":null,"abt":0,"gen":2.76},{"t":"#8J8JRQYC8","n":"NameLessWarrior","h":18,"k":"ip","ip":2.71,"ipt":7,"ab":null,"abt":0,"gen":2.64},{"t":"#Q0QYRPV9","n":"BERFOLAND","h":18,"k":"ip","ip":2.64,"ipt":14,"ab":null,"abt":0,"gen":2.71},{"t":"#QPJ29QCP0","n":"پرسپولیس","h":17,"k":"ip","ip":2.57,"ipt":14,"ab":null,"abt":0,"gen":2.59},{"t":"#Q89Y8YP2C","n":"『 Dark Knight ☬","h":18,"k":"ip","ip":2.57,"ipt":7,"ab":null,"abt":0,"gen":2.45},{"t":"#80PURL8PR","n":"ouzbusiness","h":17,"k":"ip","ip":2.5,"ipt":6,"ab":null,"abt":0,"gen":2.5},{"t":"#YQPUVPVLC","n":"джабир","h":18,"k":"ip","ip":2.44,"ipt":10,"ab":null,"abt":0,"gen":2.45},{"t":"#RVGGJ9LV","n":"sparta","h":18,"k":"ip","ip":2.43,"ipt":7,"ab":3.0,"abt":7,"gen":2.73},{"t":"#9VLR8V20R","n":"Gizem","h":18,"k":"ip","ip":2.43,"ipt":7,"ab":null,"abt":0,"gen":2.59},{"t":"#L2RR0JUPL","n":"Джабир","h":18,"k":"ip","ip":2.4,"ipt":11,"ab":null,"abt":0,"gen":2.5},{"t":"#LR99J2L9","n":"EMİN","h":18,"k":"ip","ip":2.36,"ipt":11,"ab":null,"abt":0,"gen":2.25},{"t":"#2LGLPJPY0","n":"zelf","h":17,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":3.0},{"t":"#2920RP2YR","n":"JOKER","h":17,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":3.0},{"t":"#8QC90CJJR","n":"Kral","h":16,"k":"ab","ip":null,"ipt":0,"ab":3.0,"abt":2,"gen":3.0},{"t":"#LVCQ08PLC","n":"》TR X MERT《","h":15,"k":"ab","ip":null,"ipt":0,"ab":2.86,"abt":7,"gen":2.86},{"t":"#20LLCJVJ2","n":"Maered","h":16,"k":"ab","ip":null,"ipt":0,"ab":2.86,"abt":7,"gen":2.86},{"t":"#VG0U22GL","n":"Tortuga","h":16,"k":"ab","ip":null,"ipt":0,"ab":2.86,"abt":7,"gen":2.86},{"t":"#8PURC9YCG","n":"Diyar","h":16,"k":"ab","ip":null,"ipt":0,"ab":2.86,"abt":7,"gen":2.86},{"t":"#PCR22CCY2","n":"Game Of ThroneS","h":16,"k":"ab","ip":null,"ipt":0,"ab":2.75,"abt":4,"gen":2.75},{"t":"#9RRCQJCVQ","n":"OVERLORD","h":17,"k":"ab","ip":null,"ipt":0,"ab":2.71,"abt":7,"gen":2.71},{"t":"#2CVGQ82CY","n":"Riddik","h":16,"k":"ab","ip":null,"ipt":0,"ab":2.71,"abt":7,"gen":2.71},{"t":"#GJ09LV20G","n":"XISPOS","h":18,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":2.67},{"t":"#PRY20RV0P","n":"DeMaNiTuS","h":15,"k":"ab","ip":null,"ipt":0,"ab":2.67,"abt":6,"gen":2.67},{"t":"#UPGPGCVU","n":"hydra","h":17,"k":"ab","ip":null,"ipt":0,"ab":2.57,"abt":7,"gen":2.57},{"t":"#9VCJYCQVJ","n":"Sergen3230","h":18,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":2.5},{"t":"#R0YR2VULL","n":"hayri","h":15,"k":"ab","ip":null,"ipt":0,"ab":2.5,"abt":4,"gen":2.5},{"t":"#PGUCL0CCJ","n":"AkE","h":18,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":2.33},{"t":"#9P08R2R8L","n":"£|¡f","h":16,"k":null,"ip":null,"ipt":0,"ab":2.29,"abt":7,"gen":2.29},{"t":"#QGVYVYYYG","n":"A.R.E.S","h":15,"k":null,"ip":null,"ipt":0,"ab":2.29,"abt":7,"gen":2.29},{"t":"#YCG982JJU","n":"ɪᴘ✦Cannibal","h":16,"k":"ab","ip":null,"ipt":0,"ab":2.0,"abt":6,"gen":2.0},{"t":"#2LULR0JJ0","n":"savaşçı","h":18,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#8VLJ0UJ8Y","n":"EFE","h":16,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GYUVQGCC0","n":"Yusuf TALİ","h":17,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GJ000J02G","n":"Mustafa","h":8,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#V0PQ9YV0","n":"tehlike","h":18,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#G2YQRYQUR","n":"⚡⚡Pence⚡⚡","h":11,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#2RJ80G0RG","n":"☆ Yunus Reis ☆","h":14,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GJY89U90V","n":"BombardiloŞ Cro","h":9,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GR0VRUR88","n":"Hayri","h":17,"k":"ip","ip":null,"ipt":0,"ab":2.57,"abt":7,"gen":null},{"t":"#JVQU98QP","n":"Depresyon","h":18,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#2RJL8UU2J","n":"UnConScioNabLe","h":17,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#JYPRYUG","n":"✴✴£ra¥✴✴","h":16,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#Q2UULUVQ9","n":"Sadiqov085","h":18,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#2JU99VJ0","n":"TAHA BEY","h":15,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#LVG0L9V99","n":"kurt","h":17,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GVV9UPP28","n":"Ｉam丨SORRY亗","h":12,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#8RGUR2UV2","n":"A⚔️K ✨AD HOC✨","h":18,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#G0YPGCLJ0","n":"K.S ROCCO","h":18,"k":null,"ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GPY0QG8PP","n":"K.S SWOXY","h":18,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#PVVRCJJ8V","n":"Ayyıldız time","h":17,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GRPQQLPCU","n":"REUSE-KAK-22TR","h":11,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#2P8LP882G","n":"CandyGirl","h":10,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#YVG82PY29","n":"irem__","h":17,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GVPYJGLGG","n":"LBㄨNIKEㄨ","h":11,"k":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#9Y002GCR9","n":"tmr","h":18,"k":"ab","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GRRLRU8G8","n":"dijwar","h":15,"k":"ab","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#28QCC9LQ0","n":"RagnaR","h":13,"k":"ab","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GLP290R2L","n":"Aytug","h":13,"k":"ab","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#G9VJGGYJY","n":"Dümenden Çapkın","h":16,"k":"ab","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#9LJLR208C","n":"Recep's home","h":13,"k":"ab","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#V0Q8LVYR","n":"emir","h":15,"k":"ab","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null}];
+  var KEY = 'ip-kadro-v5', HEDEF = 15;
   var harita = {}; UYE.forEach(function(u){ harita[u.t] = u; });
   var elList = document.getElementById('kList');
   var elIP = document.getElementById('kSayIP'), elAB = document.getElementById('kSayAB');
@@ -993,8 +1000,8 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
     }).map(function(u){ return u.t; });
   }
   function varsayilan(){
-    var ip = sirala('ip','ipt').filter(function(t){ return harita[t].ip !== null; }).slice(0, HEDEF);
-    var ab = sirala('ab','abt').filter(function(t){ return harita[t].ab !== null && ip.indexOf(t) < 0; }).slice(0, HEDEF);
+    var ip = sirala('ip','ipt').filter(function(t){ return harita[t].k === 'ip' && harita[t].ip !== null; }).slice(0, HEDEF);
+    var ab = sirala('ab','abt').filter(function(t){ return harita[t].k === 'ab' && ip.indexOf(t) < 0; }).slice(0, HEDEF);
     return { ip: ip, ab: ab, sira: sirala('ip','ipt') };
   }
   var D;
@@ -1007,6 +1014,11 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
   function nere(t){ return D.ip.indexOf(t) > -1 ? 'ip' : (D.ab.indexOf(t) > -1 ? 'ab' : null); }
   function kaydet(){ try { localStorage.setItem(KEY, JSON.stringify(D)); } catch(e){} }
 
+  function rozet(u){
+    if (u.k === 'ip') return '<b class="uye u-ip">IP</b>';
+    if (u.k === 'ab') return '<b class="uye u-ab">ABYSS</b>';
+    return '<b class="uye u-yok">KLANDA YOK</b>';
+  }
   function satir(t, no, yer){
     var u = harita[t];
     var li = document.createElement('li');
@@ -1014,7 +1026,7 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
     function pz(v, c){ return v === null ? '<span class="pbos">–</span>' : '<span class="' + c + '">' + v.toFixed(2) + '</span>'; }
     li.innerHTML =
       '<span class="no">' + (no || '') + '</span>' +
-      '<span class="ad">' + u.n + '<i>TH' + u.h + '</i></span>' +
+      '<span class="ad">' + u.n + rozet(u) + '<i>TH' + u.h + '</i></span>' +
       '<span class="puanlar">' + pz(u.ip, 'pip') + pz(u.ab, 'pab') + '</span>' +
       '<span class="ops">' +
         (yer ? '<button class="ok yuk" title="Yukarı">&#9650;</button><button class="ok asa" title="Aşağı">&#9660;</button>' : '') +
@@ -1090,6 +1102,10 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
       }).join('\n') : '(boş)');
     }
     var m = blok('ImaginePerest lig kadrosu', D.ip) + '\n\n' + blok('abyss lig kadrosu', D.ab);
+    var tasin = D.ip.filter(function(t){ return harita[t].k !== 'ip'; }).concat(D.ab.filter(function(t){ return harita[t].k !== 'ab'; }));
+    if (tasin.length) m += '\n\nÖnce klan değiştirmesi gerekenler:\n' + tasin.map(function(t){
+      var u = harita[t]; return '- ' + u.n + ' (' + (u.k === 'ip' ? 'şu an IP\'de' : (u.k === 'ab' ? 'şu an abyss\'te' : 'hiçbir klanda değil')) + ')';
+    }).join('\n');
     var b = this;
     function ok(){ b.textContent = 'Kopyalandı ✓'; setTimeout(function(){ b.textContent = 'Listeleri kopyala'; }, 1600); }
     function yedek(){
