@@ -261,6 +261,26 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
   .kli .tgl{min-width:0;font-size:11px;padding:0 8px}
   .kli .ad i{display:none}
 }
+
+/* ---------- katlanır tablo ---------- */
+button.split{width:100%;background:none;border:none;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:left}
+button.split span{transition:color .15s}
+button.split:hover span,button.split[aria-expanded="true"] span{color:var(--gold)}
+button.split .say{flex:0 0 auto;order:3;font-style:normal;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--faint);font-weight:600}
+button.split .ok{flex:0 0 auto;order:4;font-style:normal;font-size:10px;color:var(--faint);
+  transition:transform .3s ease;display:inline-block}
+button.split[aria-expanded="true"] .ok{transform:rotate(180deg);color:var(--gold)}
+button.split::after{order:2}
+.accbody{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s cubic-bezier(.4,0,.2,1)}
+.accbody.acik{grid-template-rows:1fr}
+.accin{overflow:hidden;min-height:0}
+.accbody .scroll{margin-top:10px}
+@media(prefers-reduced-motion:reduce){.accbody{transition:none}}
+.atla{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel2);
+  color:var(--ink);text-decoration:none;font-size:13.5px;padding:8px 14px;border-radius:2px;letter-spacing:.03em}
+.atla:hover{border-color:var(--gold);color:var(--gold)}
+html{scroll-behavior:smooth}
 </style>
 
 <header class="banner">
@@ -272,6 +292,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
         <h1>ImaginePerest</h1>
         <p class="tag">#JL9R2CYV &nbsp;·&nbsp; 46 üye &nbsp;·&nbsp; Master League III &nbsp;·&nbsp; <b>son 25 savaş incelendi</b></p>
         <p class="streak">▲ 5 savaşlık galibiyet serisi</p>
+        <p style="margin:14px 0 0"><a class="atla" href="#kadro">Savaş kadrosu planla &#8594;</a></p>
       </div>
     </div>
     <div class="kpis">
@@ -504,8 +525,8 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
 <section>
   <h2>Tam Kadro Dökümü</h2>
   <p class="lede">30 Haziran – 22 Ağustos arasındaki 25 savaşın tamamı: 11 normal savaş + 14 kupalı lig turu birlikte. Bağış rakamları içinde bulunulan sezona ait.</p>
-  <div class="split"><span>Savaşa katılanlar</span></div>
-  <div class="scroll">
+  <button class="split acc" type="button" aria-expanded="false"><span>Savaşa katılanlar</span><em class="say">23 kişi</em><i class="ok" aria-hidden="true">&#9660;</i></button>
+  <div class="accbody"><div class="accin"><div class="scroll">
     <table>
       <thead><tr>
         <th>Oyuncu</th><th>Rol</th><th>TH</th><th>Savaş</th><th>Saldırı</th><th>Kaçan</th><th>Yıldız</th><th>⭐/sld</th><th>Ort. hasar</th><th>Bağış</th><th>Aldığı</th>
@@ -536,9 +557,9 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
         <tr data-p="#2920RP2YR" tabindex="0" class="flag-weak"><td class="tn">JOKER</td><td>Kıdemli</td><td>17</td><td>1</td><td>2</td><td class="">0</td><td class="strong">4</td><td>2.00</td><td>%60</td><td>952</td><td class="dim">203</td></tr>
       </tbody>
     </table>
-  </div>
-  <div class="split"><span>Hiç savaşmayanlar</span></div>
-  <div class="scroll">
+  </div></div></div>
+  <button class="split acc" type="button" aria-expanded="false"><span>Hiç savaşmayanlar</span><em class="say">23 kişi</em><i class="ok" aria-hidden="true">&#9660;</i></button>
+  <div class="accbody"><div class="accin"><div class="scroll">
     <table>
       <thead><tr>
         <th>Oyuncu</th><th>Rol</th><th>TH</th><th>Savaş kaydı</th><th>Bağış</th><th>Aldığı</th>
@@ -569,7 +590,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
         <tr data-p="#YVG82PY29" tabindex="0"><td class="tn">irem__</td><td>Kıdemli</td><td>17</td><td class="dim nowar">son 25 savaşta hiç yok</td><td>0</td><td class="dim">0</td></tr>
       </tbody>
     </table>
-  </div>
+  </div></div></div>
 </section>
 
 <footer>
@@ -788,6 +809,18 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
     else yedek();
   });
   ciz();
+})();
+</script>
+<script>
+(function(){
+  document.querySelectorAll('button.split.acc').forEach(function(b){
+    var g = b.nextElementSibling;
+    b.addEventListener('click', function(){
+      var acik = b.getAttribute('aria-expanded') === 'true';
+      b.setAttribute('aria-expanded', acik ? 'false' : 'true');
+      g.classList.toggle('acik', !acik);
+    });
+  });
 })();
 </script>
 </body>
