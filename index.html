@@ -286,6 +286,20 @@ html{scroll-behavior:smooth}
 .kbas span{font-family:var(--serif);font-size:15px;letter-spacing:.1em;color:var(--gold)}
 .kbas[aria-expanded="true"] span{color:var(--gold)}
 .puan.ikincil{color:var(--dim);opacity:.75}
+.tagx{color:var(--faint);font-size:13px;letter-spacing:.05em}
+
+.kadro-say.ab{color:var(--jade)}
+.kli .puanlar{flex:0 0 auto;display:flex;gap:0;font-variant-numeric:tabular-nums;font-size:12.5px}
+.kli .puanlar span{width:42px;text-align:right}
+.kli .pip{color:var(--gold)} .kli .pab{color:var(--jade)}
+.kli .pbos{color:var(--faint);opacity:.5}
+.kli.yok .pip,.kli.yok .pab{opacity:.45}
+.kli .ops .kl{min-width:54px;font-weight:700;letter-spacing:.06em;font-size:11px}
+.kli .ops .kl.on-ip{border-color:rgba(242,177,52,.6);color:var(--gold);background:rgba(242,177,52,.1)}
+.kli .ops .kl.on-ab{border-color:rgba(111,176,122,.6);color:var(--jade);background:rgba(111,176,122,.1)}
+.kayrak.ab{color:var(--jade)}
+.kayrak.ip{color:var(--gold)}
+@media(max-width:560px){.kli .puanlar span{width:34px}.kli .ops .kl{min-width:40px;font-size:10px;padding:0 5px}}
 </style>
 
 <header class="banner">
@@ -300,11 +314,11 @@ html{scroll-behavior:smooth}
       </div>
     </div>
     <div class="kpis">
-      <div class="kpi gold"><b>200/210</b><span>Ligde kullanılan saldırı hakkı</span></div>
+      <div class="kpi gold"><b>206/210</b><span>Ligde kullanılan saldırı hakkı</span></div>
       <div class="kpi"><b>14</b><span>Klan ligi turu (2 sezon)</span></div>
       <div class="kpi"><b>23</b><span>Savaşan üye</span></div>
       <div class="kpi" style="color:var(--brick)"><b>23</b><span>Hiç savaşmayan üye</span></div>
-      <div class="kpi" style="color:var(--clay)"><b>54</b><span>Normal savaşta boşa giden hak</span></div>
+      <div class="kpi" style="color:var(--clay)"><b>49</b><span>Normal savaşta boşa giden hak</span></div>
     </div>
   </div>
 </header>
@@ -312,17 +326,18 @@ html{scroll-behavior:smooth}
 <div class="wrap">
 
 <section id="kadro" class="ust">
-  <button class="split acc kbas" type="button" aria-expanded="false"><span>Lige girecekler · kadro planı</span><em class="say" id="kOzet">15 kişi seçili</em><i class="ok" aria-hidden="true">&#9660;</i></button>
+  <button class="split acc kbas" type="button" aria-expanded="false"><span>Lig kadroları · ImaginePerest + abyss</span><em class="say" id="kOzet">15 + 15</em><i class="ok" aria-hidden="true">&#9660;</i></button>
   <div class="accbody"><div class="accin">
-    <p class="lede" style="margin-top:14px">Lig turu ya da 15'lik savaş başlatırken kimleri yazacağını buradan hazırla. Her ismin yanındaki tuşa bas: <b style="color:var(--jade)">GİRECEK</b> olanlar üstte numaralanır, <b style="color:var(--brick)">GİRMEZ</b> dediklerin otomatik olarak listenin altına düşer. Ok tuşlarıyla sırayı da kaydırabilirsin. Liste <b>lig performansına göre</b> sıralı geliyor; düzenlemen bu cihazda saklanır.</p>
+    <p class="lede" style="margin-top:14px">Lig başlarken iki klanın kadrosunu birlikte kur. Her ismin yanında iki tuş var: <b style="color:var(--gold)">IP</b> ve <b style="color:var(--jade)">ABYSS</b>. Birine basınca o klanın kadrosuna girer, tekrar basınca çıkar. ImaginePerest'e girmeyenleri tek tuşla abyss'e kaydırabilirsin. Ok tuşlarıyla sırayı da değiştirebilirsin; liste lig performansına göre sıralı geliyor ve düzenlemen bu cihazda saklanır.</p>
     <div class="kadro-bar">
-      <span class="kadro-say" id="kSay">0<small>/ 15 girecek</small></span>
+      <span class="kadro-say" id="kSayIP">0<small>/ 15 ImaginePerest</small></span>
+      <span class="kadro-say ab" id="kSayAB">0<small>/ 15 abyss</small></span>
       <span style="flex:1 1 auto"></span>
-      <button class="kbtn" id="kKopya">Listeyi kopyala</button>
+      <button class="kbtn" id="kKopya">Listeleri kopyala</button>
       <button class="kbtn" id="kSifir">Sıfırla</button>
     </div>
     <ul class="klist" id="kList"></ul>
-    <p class="kadro-not">Yanındaki sayı lig ortalaması (⭐/saldırı). <span style="color:var(--dim)">Soluk olanlar</span> lig oynamamış, normal savaş ortalaması yazıyor. Tire olanların hiç kaydı yok.</p>
+    <p class="kadro-not">Puanlar lig ⭐/saldırı ortalaması: soldaki ImaginePerest ligi, sağdaki abyss ligi. Tire, o klanda lig oynamamış demek.</p>
   </div></div>
 </section>
 
@@ -333,54 +348,54 @@ html{scroll-behavior:smooth}
       <li class="hrow" data-p="#2CPG0JGQU" tabindex="0" role="button">
         <span class="hrank">1</span>
         <span class="hname">IP✦Caraxes<em>TH18 · Lider</em></span>
-        <span class="hbar"><i style="width:100.0%"></i><b>3.00<small>⭐/saldırı</small></b></span>
-        <span class="hnum">18<small>yıldız</small></span>
-        <span class="hnum">6<small>üç yıldız</small></span>
+        <span class="hbar"><i style="width:97.6%"></i><b>2.93<small>⭐/saldırı</small></b></span>
+        <span class="hnum">41<small>yıldız</small></span>
+        <span class="hnum">13<small>üç yıldız</small></span>
         <span class="hnum ok">0<small>kaçan hak</small></span>
         <span class="hnum">%100<small>ort. hasar</small></span>
       </li>
-      <li class="hrow" data-p="#22Y9GQV" tabindex="0" role="button">
+      <li class="hrow" data-p="#GYR29JYRG" tabindex="0" role="button">
         <span class="hrank">2</span>
-        <span class="hname">WpX⚡Murti<em>TH18 · Yrd. Lider</em></span>
-        <span class="hbar"><i style="width:94.4%"></i><b>2.83<small>⭐/saldırı</small></b></span>
-        <span class="hnum">17<small>yıldız</small></span>
-        <span class="hnum">5<small>üç yıldız</small></span>
+        <span class="hname">kanewar<em>TH18 · Yrd. Lider</em></span>
+        <span class="hbar"><i style="width:95.2%"></i><b>2.86<small>⭐/saldırı</small></b></span>
+        <span class="hnum">40<small>yıldız</small></span>
+        <span class="hnum">12<small>üç yıldız</small></span>
         <span class="hnum ok">0<small>kaçan hak</small></span>
         <span class="hnum">%98<small>ort. hasar</small></span>
       </li>
-      <li class="hrow" data-p="#Q0QYRPV9" tabindex="0" role="button">
+      <li class="hrow" data-p="#22Y9GQV" tabindex="0" role="button">
         <span class="hrank">3</span>
-        <span class="hname">BERFOLAND<em>TH18 · Yrd. Lider</em></span>
-        <span class="hbar"><i style="width:88.9%"></i><b>2.67<small>⭐/saldırı</small></b></span>
-        <span class="hnum">16<small>yıldız</small></span>
-        <span class="hnum">5<small>üç yıldız</small></span>
-        <span class="hnum ok">0<small>kaçan hak</small></span>
-        <span class="hnum">%99<small>ort. hasar</small></span>
-      </li>
-      <li class="hrow" data-p="#QPJ29QCP0" tabindex="0" role="button">
-        <span class="hrank">4</span>
-        <span class="hname">پرسپولیس<em>TH17 · Kıdemli</em></span>
-        <span class="hbar"><i style="width:88.9%"></i><b>2.67<small>⭐/saldırı</small></b></span>
-        <span class="hnum">16<small>yıldız</small></span>
-        <span class="hnum">4<small>üç yıldız</small></span>
+        <span class="hname">WpX⚡Murti<em>TH18 · Yrd. Lider</em></span>
+        <span class="hbar"><i style="width:90.5%"></i><b>2.71<small>⭐/saldırı</small></b></span>
+        <span class="hnum">38<small>yıldız</small></span>
+        <span class="hnum">11<small>üç yıldız</small></span>
         <span class="hnum ok">0<small>kaçan hak</small></span>
         <span class="hnum">%98<small>ort. hasar</small></span>
       </li>
       <li class="hrow" data-p="#P8G0PGV88" tabindex="0" role="button">
-        <span class="hrank">5</span>
+        <span class="hrank">4</span>
         <span class="hname">L.O.R.D<em>TH18 · Kıdemli</em></span>
-        <span class="hbar"><i style="width:88.9%"></i><b>2.67<small>⭐/saldırı</small></b></span>
-        <span class="hnum">16<small>yıldız</small></span>
-        <span class="hnum">4<small>üç yıldız</small></span>
+        <span class="hbar"><i style="width:90.5%"></i><b>2.71<small>⭐/saldırı</small></b></span>
+        <span class="hnum">38<small>yıldız</small></span>
+        <span class="hnum">10<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%96<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#Q0QYRPV9" tabindex="0" role="button">
+        <span class="hrank">5</span>
+        <span class="hname">BERFOLAND<em>TH18 · Yrd. Lider</em></span>
+        <span class="hbar"><i style="width:88.1%"></i><b>2.64<small>⭐/saldırı</small></b></span>
+        <span class="hnum">37<small>yıldız</small></span>
+        <span class="hnum">11<small>üç yıldız</small></span>
         <span class="hnum ok">0<small>kaçan hak</small></span>
         <span class="hnum">%98<small>ort. hasar</small></span>
       </li>
-      <li class="hrow" data-p="#GYR29JYRG" tabindex="0" role="button">
+      <li class="hrow" data-p="#QPJ29QCP0" tabindex="0" role="button">
         <span class="hrank">6</span>
-        <span class="hname">kanewar<em>TH18 · Yrd. Lider</em></span>
-        <span class="hbar"><i style="width:88.9%"></i><b>2.67<small>⭐/saldırı</small></b></span>
-        <span class="hnum">16<small>yıldız</small></span>
-        <span class="hnum">4<small>üç yıldız</small></span>
+        <span class="hname">پرسپولیس<em>TH17 · Kıdemli</em></span>
+        <span class="hbar"><i style="width:85.7%"></i><b>2.57<small>⭐/saldırı</small></b></span>
+        <span class="hnum">36<small>yıldız</small></span>
+        <span class="hnum">9<small>üç yıldız</small></span>
         <span class="hnum ok">0<small>kaçan hak</small></span>
         <span class="hnum">%96<small>ort. hasar</small></span>
       </li>
@@ -388,112 +403,112 @@ html{scroll-behavior:smooth}
         <span class="hrank">7</span>
         <span class="hname">BadBoy™<em>TH16 · Yrd. Lider</em></span>
         <span class="hbar"><i style="width:100.0%"></i><b>3.00<small>⭐/saldırı</small></b></span>
-        <span class="hnum">12<small>yıldız</small></span>
-        <span class="hnum">4<small>üç yıldız</small></span>
+        <span class="hnum">30<small>yıldız</small></span>
+        <span class="hnum">10<small>üç yıldız</small></span>
         <span class="hnum ok">0<small>kaçan hak</small></span>
         <span class="hnum">%100<small>ort. hasar</small></span>
-      </li>
-      <li class="hrow" data-p="#L2RR0JUPL" tabindex="0" role="button">
-        <span class="hrank">8</span>
-        <span class="hname">Джабир<em>TH18 · Kıdemli</em></span>
-        <span class="hbar"><i style="width:80.0%"></i><b>2.40<small>⭐/saldırı</small></b></span>
-        <span class="hnum">12<small>yıldız</small></span>
-        <span class="hnum">2<small>üç yıldız</small></span>
-        <span class="hnum ok">0<small>kaçan hak</small></span>
-        <span class="hnum">%88<small>ort. hasar</small></span>
       </li>
       <li class="hrow" data-p="#LR99J2L9" tabindex="0" role="button">
-        <span class="hrank">9</span>
+        <span class="hrank">8</span>
         <span class="hname">EMİN<em>TH18 · Kıdemli</em></span>
-        <span class="hbar"><i style="width:73.3%"></i><b>2.20<small>⭐/saldırı</small></b></span>
-        <span class="hnum">11<small>yıldız</small></span>
-        <span class="hnum">1<small>üç yıldız</small></span>
+        <span class="hbar"><i style="width:78.8%"></i><b>2.36<small>⭐/saldırı</small></b></span>
+        <span class="hnum">26<small>yıldız</small></span>
+        <span class="hnum">5<small>üç yıldız</small></span>
         <span class="hnum ok">0<small>kaçan hak</small></span>
-        <span class="hnum">%93<small>ort. hasar</small></span>
+        <span class="hnum">%94<small>ort. hasar</small></span>
       </li>
-      <li class="hrow" data-p="#GUUY0Y8VP" tabindex="0" role="button">
-        <span class="hrank">10</span>
-        <span class="hname">✧G✧H✧o✧s✧T✧<em>TH18 · Yrd. Lider</em></span>
-        <span class="hbar"><i style="width:100.0%"></i><b>3.00<small>⭐/saldırı</small></b></span>
-        <span class="hnum">9<small>yıldız</small></span>
-        <span class="hnum">3<small>üç yıldız</small></span>
-        <span class="hnum ok">0<small>kaçan hak</small></span>
-        <span class="hnum">%100<small>ort. hasar</small></span>
-      </li>
-      <li class="hrow" data-p="#PJC2GVPUP" tabindex="0" role="button">
-        <span class="hrank">11</span>
-        <span class="hname">Prime<em>TH17 · Yrd. Lider</em></span>
-        <span class="hbar"><i style="width:100.0%"></i><b>3.00<small>⭐/saldırı</small></b></span>
-        <span class="hnum">9<small>yıldız</small></span>
-        <span class="hnum">3<small>üç yıldız</small></span>
-        <span class="hnum ok">0<small>kaçan hak</small></span>
-        <span class="hnum">%100<small>ort. hasar</small></span>
-      </li>
-      <li class="hrow" data-p="#C9QYUGCY" tabindex="0" role="button">
-        <span class="hrank">12</span>
-        <span class="hname">AhmetSezer<em>TH18 · Kıdemli</em></span>
-        <span class="hbar"><i style="width:100.0%"></i><b>3.00<small>⭐/saldırı</small></b></span>
-        <span class="hnum">9<small>yıldız</small></span>
-        <span class="hnum">3<small>üç yıldız</small></span>
-        <span class="hnum ok">0<small>kaçan hak</small></span>
-        <span class="hnum">%100<small>ort. hasar</small></span>
+      <li class="hrow" data-p="#L2RR0JUPL" tabindex="0" role="button">
+        <span class="hrank">9</span>
+        <span class="hname">Джабир<em>TH18 · Kıdemli</em></span>
+        <span class="hbar"><i style="width:80.0%"></i><b>2.40<small>⭐/saldırı</small></b></span>
+        <span class="hnum">24<small>yıldız</small></span>
+        <span class="hnum">4<small>üç yıldız</small></span>
+        <span class="hnum warn">1<small>kaçan hak</small></span>
+        <span class="hnum">%92<small>ort. hasar</small></span>
       </li>
       <li class="hrow" data-p="#YQPUVPVLC" tabindex="0" role="button">
-        <span class="hrank">13</span>
+        <span class="hrank">10</span>
         <span class="hname">джабир<em>TH18 · Kıdemli</em></span>
-        <span class="hbar"><i style="width:75.0%"></i><b>2.25<small>⭐/saldırı</small></b></span>
-        <span class="hnum">9<small>yıldız</small></span>
-        <span class="hnum">1<small>üç yıldız</small></span>
-        <span class="hnum ok">0<small>kaçan hak</small></span>
-        <span class="hnum">%79<small>ort. hasar</small></span>
+        <span class="hbar"><i style="width:81.5%"></i><b>2.44<small>⭐/saldırı</small></b></span>
+        <span class="hnum">22<small>yıldız</small></span>
+        <span class="hnum">4<small>üç yıldız</small></span>
+        <span class="hnum warn">1<small>kaçan hak</small></span>
+        <span class="hnum">%86<small>ort. hasar</small></span>
       </li>
-      <li class="hrow" data-p="#Q89Y8YP2C" tabindex="0" role="button">
-        <span class="hrank">14</span>
-        <span class="hname">『 Dark Knight ☬<em>TH18 · Kıdemli</em></span>
-        <span class="hbar"><i style="width:88.9%"></i><b>2.67<small>⭐/saldırı</small></b></span>
-        <span class="hnum">8<small>yıldız</small></span>
-        <span class="hnum">2<small>üç yıldız</small></span>
+      <li class="hrow" data-p="#GUUY0Y8VP" tabindex="0" role="button">
+        <span class="hrank">11</span>
+        <span class="hname">✧G✧H✧o✧s✧T✧<em>TH18 · Yrd. Lider</em></span>
+        <span class="hbar"><i style="width:95.2%"></i><b>2.86<small>⭐/saldırı</small></b></span>
+        <span class="hnum">20<small>yıldız</small></span>
+        <span class="hnum">6<small>üç yıldız</small></span>
         <span class="hnum ok">0<small>kaçan hak</small></span>
         <span class="hnum">%99<small>ort. hasar</small></span>
       </li>
-      <li class="hrow" data-p="#8J8JRQYC8" tabindex="0" role="button">
-        <span class="hrank">15</span>
-        <span class="hname">NameLessWarrior<em>TH18 · Yrd. Lider</em></span>
-        <span class="hbar"><i style="width:88.9%"></i><b>2.67<small>⭐/saldırı</small></b></span>
-        <span class="hnum">8<small>yıldız</small></span>
-        <span class="hnum">2<small>üç yıldız</small></span>
+      <li class="hrow" data-p="#PJC2GVPUP" tabindex="0" role="button">
+        <span class="hrank">12</span>
+        <span class="hname">Prime<em>TH17 · Yrd. Lider</em></span>
+        <span class="hbar"><i style="width:95.2%"></i><b>2.86<small>⭐/saldırı</small></b></span>
+        <span class="hnum">20<small>yıldız</small></span>
+        <span class="hnum">6<small>üç yıldız</small></span>
         <span class="hnum ok">0<small>kaçan hak</small></span>
-        <span class="hnum">%93<small>ort. hasar</small></span>
+        <span class="hnum">%98<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#8J8JRQYC8" tabindex="0" role="button">
+        <span class="hrank">13</span>
+        <span class="hname">NameLessWarrior<em>TH18 · Yrd. Lider</em></span>
+        <span class="hbar"><i style="width:90.5%"></i><b>2.71<small>⭐/saldırı</small></b></span>
+        <span class="hnum">19<small>yıldız</small></span>
+        <span class="hnum">5<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%96<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#C9QYUGCY" tabindex="0" role="button">
+        <span class="hrank">14</span>
+        <span class="hname">AhmetSezer<em>TH18 · Kıdemli</em></span>
+        <span class="hbar"><i style="width:100.0%"></i><b>3.00<small>⭐/saldırı</small></b></span>
+        <span class="hnum">18<small>yıldız</small></span>
+        <span class="hnum">6<small>üç yıldız</small></span>
+        <span class="hnum warn">1<small>kaçan hak</small></span>
+        <span class="hnum">%100<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#Q89Y8YP2C" tabindex="0" role="button">
+        <span class="hrank">15</span>
+        <span class="hname">『 Dark Knight ☬<em>TH18 · Kıdemli</em></span>
+        <span class="hbar"><i style="width:85.7%"></i><b>2.57<small>⭐/saldırı</small></b></span>
+        <span class="hnum">18<small>yıldız</small></span>
+        <span class="hnum">5<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%94<small>ort. hasar</small></span>
       </li>
       <li class="hrow" data-p="#9VLR8V20R" tabindex="0" role="button">
         <span class="hrank">16</span>
         <span class="hname">Gizem<em>TH18 · Yrd. Lider</em></span>
-        <span class="hbar"><i style="width:77.8%"></i><b>2.33<small>⭐/saldırı</small></b></span>
-        <span class="hnum">7<small>yıldız</small></span>
-        <span class="hnum">2<small>üç yıldız</small></span>
+        <span class="hbar"><i style="width:81.0%"></i><b>2.43<small>⭐/saldırı</small></b></span>
+        <span class="hnum">17<small>yıldız</small></span>
+        <span class="hnum">5<small>üç yıldız</small></span>
         <span class="hnum ok">0<small>kaçan hak</small></span>
-        <span class="hnum">%97<small>ort. hasar</small></span>
+        <span class="hnum">%99<small>ort. hasar</small></span>
       </li>
       <li class="hrow" data-p="#RVGGJ9LV" tabindex="0" role="button">
         <span class="hrank">17</span>
         <span class="hname">sparta<em>TH18 · Yrd. Lider</em></span>
-        <span class="hbar"><i style="width:77.8%"></i><b>2.33<small>⭐/saldırı</small></b></span>
-        <span class="hnum">7<small>yıldız</small></span>
-        <span class="hnum">1<small>üç yıldız</small></span>
+        <span class="hbar"><i style="width:81.0%"></i><b>2.43<small>⭐/saldırı</small></b></span>
+        <span class="hnum">17<small>yıldız</small></span>
+        <span class="hnum">3<small>üç yıldız</small></span>
         <span class="hnum ok">0<small>kaçan hak</small></span>
-        <span class="hnum">%81<small>ort. hasar</small></span>
+        <span class="hnum">%87<small>ort. hasar</small></span>
       </li>
       <li class="hrow" data-p="#80PURL8PR" tabindex="0" role="button">
         <span class="hrank">18</span>
         <span class="hname">ouzbusiness<em>TH17 · Yrd. Lider</em></span>
-        <span class="hbar"><i style="width:100.0%"></i><b>3.00<small>⭐/saldırı</small></b></span>
-        <span class="hnum">6<small>yıldız</small></span>
-        <span class="hnum">2<small>üç yıldız</small></span>
+        <span class="hbar"><i style="width:83.3%"></i><b>2.50<small>⭐/saldırı</small></b></span>
+        <span class="hnum">15<small>yıldız</small></span>
+        <span class="hnum">4<small>üç yıldız</small></span>
         <span class="hnum ok">0<small>kaçan hak</small></span>
-        <span class="hnum">%100<small>ort. hasar</small></span>
+        <span class="hnum">%90<small>ort. hasar</small></span>
       </li>
   </ol>
-  <p class="foot">Her turda 15 kişilik kadro kuruluyor, o yüzden kimse 14 turun hepsinde yok. “Tur” yerine toplam yıldız ve ortalama birlikte okunmalı: az tur oynayıp 3.00 ortalama tutturan, çok tur oynayıp 2.20'de kalandan daha güvenilir bir lig oyuncusu.</p>
+  <p class="foot">14 turun tamamında kadroya yazılan bir çekirdek var; alt sıralar dönüşümlü oynuyor. Az tur oynayıp yüksek ortalama tutturan da değerli, ama lig sıralamasını toplam yıldız belirliyor.</p>
 </section>
 
 <section>
@@ -510,15 +525,15 @@ html{scroll-behavior:smooth}
   <div class="compare">
     <div class="cmp good">
       <span class="lab">Klan liginde hak kullanımı</span>
-      <div class="big">%95</div>
-      <div class="meter"><i style="width:95.2%"></i></div>
-      <p>210 hakkın 200'i kullanıldı. 14 turda toplam <b style="color:var(--ink)">yalnızca 10 kaçan saldırı</b>. Saldırıların %63'i üç yıldız.</p>
+      <div class="big">%98</div>
+      <div class="meter"><i style="width:98.1%"></i></div>
+      <p>210 hakkın 206'sı kullanıldı. 14 turda toplam <b style="color:var(--ink)">yalnızca 4 kaçan saldırı</b>. Saldırıların %73'i üç yıldız.</p>
     </div>
     <div class="cmp mid">
       <span class="lab">Normal savaşta hak kullanımı</span>
-      <div class="big">%84</div>
-      <div class="meter"><i style="width:84.1%"></i></div>
-      <p>340 hakkın 286'i kullanıldı, <b style="color:var(--ink)">54 hak boşa gitti</b>. Kullanılanların 68'i zaten üçlenmiş köye yapılan <b style="color:var(--ink)">BB kesme</b> vuruşu.</p>
+      <div class="big">%86</div>
+      <div class="meter"><i style="width:85.6%"></i></div>
+      <p>340 hakkın 291'i kullanıldı, <b style="color:var(--ink)">49 hak boşa gitti</b>. Kullanılanların 60'ı zaten üçlenmiş köye yapılan <b style="color:var(--ink)">BB kesme</b> vuruşu.</p>
     </div>
   </div>
   <p class="lede" style="margin-top:14px">Tablo net: klan lig söz konusu olunca toparlanıyor, normal savaşta dağılıyor. Ağustos ligini <b style="color:var(--jade)">6-1</b> kapatmışlar — Temmuz'daki 4-3'ten belirgin bir sıçrama.</p>
@@ -526,32 +541,32 @@ html{scroll-behavior:smooth}
 
 <section id="normal">
   <h2>Normal Savaşlar</h2>
-  <p class="lede">11 normal savaş, kişi başı iki hak. Ligin aksine burada dağılma var. <b>BB kesme</b> sütunu, zaten üç yıldızlanmış köye yapılan temizlik vuruşlarını sayıyor — bunlar yıldız ve hasar ortalamasına <b>katılmıyor</b>, çünkü oyuncunun beceresiyle ilgisi yok, sadece hakkı boşa gitmesin diye yapılıyor.</p>
+  <p class="lede">11 normal savaş, kişi başı iki hak. Ligin aksine burada dağılma var. <b>BB kesme</b> sütunu, zaten üç yıldızlanmış köye yapılan temizlik vuruşlarını sayıyor — bunlar yıldız ve hasar ortalamasına <b>katılmıyor</b>, çünkü oyuncunun becerisiyle ilgisi yok, sadece hak boşa gitmesin diye yapılıyor.</p>
   <div class="scroll">
     <table>
       <thead><tr><th>Oyuncu</th><th>TH</th><th>Savaş</th><th>Saldırı</th><th>Kaçan</th><th>BB kesme</th><th>Yıldız</th><th>⭐/sld</th><th>Ort. hasar</th></tr></thead>
       <tbody>
-                <tr data-p="#2CPG0JGQU" tabindex="0"><td class="tn">IP✦Caraxes</td><td>18</td><td>9</td><td>16</td><td>0</td><td class="dim">2</td><td class="strong">47</td><td>2.94</td><td>%99</td></tr>
-        <tr data-p="#22Y9GQV" tabindex="0"><td class="tn">WpX⚡Murti</td><td>18</td><td>9</td><td>16</td><td>0</td><td class="dim">2</td><td class="strong">44</td><td>2.75</td><td>%98</td></tr>
-        <tr data-p="#Q0QYRPV9" tabindex="0"><td class="tn">BERFOLAND</td><td>18</td><td>9</td><td>16</td><td>0</td><td class="dim">2</td><td class="strong">44</td><td>2.75</td><td>%97</td></tr>
-        <tr data-p="#QPJ29QCP0" tabindex="0"><td class="tn">پرسپولیس</td><td>17</td><td>9</td><td>16</td><td>0</td><td class="dim">2</td><td class="strong">43</td><td>2.69</td><td>%97</td></tr>
-        <tr data-p="#2PJL22GLQ" tabindex="0"><td class="tn">BadBoy™</td><td>16</td><td>7</td><td>12</td><td class="bad">2</td><td class="dim">–</td><td class="strong">36</td><td>3.00</td><td>%100</td></tr>
-        <tr data-p="#RVGGJ9LV" tabindex="0"><td class="tn">sparta</td><td>18</td><td>8</td><td>11</td><td>0</td><td class="dim">5</td><td class="strong">31</td><td>2.82</td><td>%96</td></tr>
-        <tr data-p="#GUUY0Y8VP" tabindex="0"><td class="tn">✧G✧H✧o✧s✧T✧</td><td>18</td><td>6</td><td>12</td><td>0</td><td class="dim">–</td><td class="strong">30</td><td>2.50</td><td>%91</td></tr>
-        <tr data-p="#9VLR8V20R" tabindex="0"><td class="tn">Gizem</td><td>18</td><td>6</td><td>11</td><td>0</td><td class="dim">1</td><td class="strong">29</td><td>2.64</td><td>%97</td></tr>
-        <tr data-p="#P8G0PGV88" tabindex="0"><td class="tn">L.O.R.D</td><td>18</td><td>6</td><td>10</td><td class="bad">1</td><td class="dim">1</td><td class="strong">29</td><td>2.90</td><td>%96</td></tr>
+        <tr data-p="#2CPG0JGQU" tabindex="0"><td class="tn">IP✦Caraxes</td><td>18</td><td>11</td><td>20</td><td>0</td><td class="dim">2</td><td class="strong">59</td><td>2.95</td><td>%99</td></tr>
+        <tr data-p="#22Y9GQV" tabindex="0"><td class="tn">WpX⚡Murti</td><td>18</td><td>11</td><td>20</td><td>0</td><td class="dim">2</td><td class="strong">56</td><td>2.80</td><td>%98</td></tr>
+        <tr data-p="#Q0QYRPV9" tabindex="0"><td class="tn">BERFOLAND</td><td>18</td><td>11</td><td>20</td><td>0</td><td class="dim">2</td><td class="strong">55</td><td>2.75</td><td>%97</td></tr>
+        <tr data-p="#2PJL22GLQ" tabindex="0"><td class="tn">BadBoy™</td><td>16</td><td>9</td><td>16</td><td class="bad">2</td><td class="dim">–</td><td class="strong">48</td><td>3.00</td><td>%100</td></tr>
+        <tr data-p="#QPJ29QCP0" tabindex="0"><td class="tn">پرسپولیس</td><td>17</td><td>10</td><td>18</td><td>0</td><td class="dim">2</td><td class="strong">47</td><td>2.61</td><td>%96</td></tr>
+        <tr data-p="#RVGGJ9LV" tabindex="0"><td class="tn">sparta</td><td>18</td><td>10</td><td>15</td><td>0</td><td class="dim">5</td><td class="strong">43</td><td>2.87</td><td>%97</td></tr>
+        <tr data-p="#GUUY0Y8VP" tabindex="0"><td class="tn">✧G✧H✧o✧s✧T✧</td><td>18</td><td>8</td><td>16</td><td>0</td><td class="dim">–</td><td class="strong">41</td><td>2.56</td><td>%92</td></tr>
+        <tr data-p="#9VLR8V20R" tabindex="0"><td class="tn">Gizem</td><td>18</td><td>8</td><td>15</td><td>0</td><td class="dim">1</td><td class="strong">40</td><td>2.67</td><td>%98</td></tr>
+        <tr data-p="#P8G0PGV88" tabindex="0"><td class="tn">L.O.R.D</td><td>18</td><td>7</td><td>12</td><td class="bad">1</td><td class="dim">1</td><td class="strong">35</td><td>2.92</td><td>%97</td></tr>
+        <tr data-p="#GYR29JYRG" tabindex="0"><td class="tn">kanewar</td><td>18</td><td>11</td><td>6</td><td class="bad">2</td><td class="dim">14</td><td class="strong">15</td><td>2.50</td><td>%92</td></tr>
         <tr data-p="#PGUCL0CCJ" tabindex="0"><td class="tn">AkE</td><td>18</td><td>3</td><td>6</td><td>0</td><td class="dim">–</td><td class="strong">14</td><td>2.33</td><td>%88</td></tr>
-        <tr data-p="#GYR29JYRG" tabindex="0"><td class="tn">kanewar</td><td>18</td><td>9</td><td>4</td><td class="bad">2</td><td class="dim">12</td><td class="strong">11</td><td>2.75</td><td>%93</td></tr>
-        <tr data-p="#PJC2GVPUP" tabindex="0"><td class="tn">Prime</td><td>17</td><td>2</td><td>4</td><td>0</td><td class="dim">–</td><td class="strong">9</td><td>2.25</td><td>%80</td></tr>
-        <tr data-p="#C9QYUGCY" tabindex="0"><td class="tn">AhmetSezer</td><td>18</td><td>6</td><td>3</td><td class="bad">8</td><td class="dim">1</td><td class="strong">8</td><td>2.67</td><td>%92</td></tr>
-        <tr data-p="#GJ09LV20G" tabindex="0"><td class="tn">XISPOS</td><td>18</td><td>2</td><td>3</td><td>0</td><td class="dim">1</td><td class="strong">8</td><td>2.67</td><td>%91</td></tr>
-        <tr data-p="#Q89Y8YP2C" tabindex="0"><td class="tn">『 Dark Knight ☬</td><td>18</td><td>4</td><td>3</td><td class="bad">1</td><td class="dim">4</td><td class="strong">7</td><td>2.33</td><td>%97</td></tr>
-        <tr data-p="#LR99J2L9" tabindex="0"><td class="tn">EMİN</td><td>18</td><td>4</td><td>3</td><td class="bad">3</td><td class="dim">2</td><td class="strong">7</td><td>2.33</td><td>%83</td></tr>
-        <tr data-p="#8J8JRQYC8" tabindex="0"><td class="tn">NameLessWarrior</td><td>18</td><td>4</td><td>2</td><td class="bad">2</td><td class="dim">4</td><td class="strong">6</td><td>3.00</td><td>%100</td></tr>
+        <tr data-p="#PJC2GVPUP" tabindex="0"><td class="tn">Prime</td><td>17</td><td>3</td><td>6</td><td>0</td><td class="dim">–</td><td class="strong">13</td><td>2.17</td><td>%83</td></tr>
+        <tr data-p="#8J8JRQYC8" tabindex="0"><td class="tn">NameLessWarrior</td><td>18</td><td>6</td><td>4</td><td class="bad">4</td><td class="dim">4</td><td class="strong">10</td><td>2.50</td><td>%99</td></tr>
+        <tr data-p="#LR99J2L9" tabindex="0"><td class="tn">EMİN</td><td>18</td><td>5</td><td>5</td><td class="bad">3</td><td class="dim">2</td><td class="strong">10</td><td>2.00</td><td>%82</td></tr>
+        <tr data-p="#Q89Y8YP2C" tabindex="0"><td class="tn">『 Dark Knight ☬</td><td>18</td><td>5</td><td>4</td><td class="bad">1</td><td class="dim">5</td><td class="strong">9</td><td>2.25</td><td>%93</td></tr>
+        <tr data-p="#C9QYUGCY" tabindex="0"><td class="tn">AhmetSezer</td><td>18</td><td>8</td><td>3</td><td class="bad">12</td><td class="dim">1</td><td class="strong">8</td><td>2.67</td><td>%92</td></tr>
+        <tr data-p="#GJ09LV20G" tabindex="0"><td class="tn">XISPOS</td><td>18</td><td>3</td><td>3</td><td class="bad">2</td><td class="dim">1</td><td class="strong">8</td><td>2.67</td><td>%91</td></tr>
         <tr data-p="#L2RR0JUPL" tabindex="0"><td class="tn">Джабир</td><td>18</td><td>1</td><td>2</td><td>0</td><td class="dim">–</td><td class="strong">6</td><td>3.00</td><td>%100</td></tr>
         <tr data-p="#2LGLPJPY0" tabindex="0"><td class="tn">zelf</td><td>17</td><td>1</td><td>2</td><td>0</td><td class="dim">–</td><td class="strong">6</td><td>3.00</td><td>%100</td></tr>
         <tr data-p="#YQPUVPVLC" tabindex="0"><td class="tn">джабир</td><td>18</td><td>4</td><td>2</td><td class="bad">5</td><td class="dim">1</td><td class="strong">5</td><td>2.50</td><td>%95</td></tr>
-        <tr data-p="#9VCJYCQVJ" tabindex="0"><td class="tn">Sergen3230</td><td>18</td><td>3</td><td>2</td><td class="bad">2</td><td class="dim">2</td><td class="strong">5</td><td>2.50</td><td>%86</td></tr>
+        <tr data-p="#9VCJYCQVJ" tabindex="0"><td class="tn">Sergen3230</td><td>18</td><td>4</td><td>2</td><td class="bad">2</td><td class="dim">4</td><td class="strong">5</td><td>2.50</td><td>%86</td></tr>
         <tr data-p="#2920RP2YR" tabindex="0"><td class="tn">JOKER</td><td>17</td><td>1</td><td>1</td><td>0</td><td class="dim">1</td><td class="strong">3</td><td>3.00</td><td>%100</td></tr>
         <tr data-p="#80PURL8PR" tabindex="0"><td class="tn">ouzbusiness</td><td>17</td><td>1</td><td>0</td><td class="bad">1</td><td class="dim">1</td><td class="strong">0</td><td>–</td><td>–</td></tr>
       </tbody>
@@ -559,33 +574,195 @@ html{scroll-behavior:smooth}
   </div>
 </section>
 
+<section id="abyss">
+  <h2>abyss · Alt Klan Ligi</h2>
+  <p class="lede">Alt klan <b>abyss</b> <span class="tagx">#98CVLYRR</span> yalnızca lig için kullanılıyor. Ağustos liginde <b style="color:var(--jade)">7 turun 7'sini de kazandı</b> ve 105 hakkın tamamı kullanıldı — <b style="color:var(--jade)">sıfır kaçan saldırı</b>. Saldırıların %72'i üç yıldız. <b>IP kadrosunda</b> etiketli olanlar ImaginePerest üyesi, lig için buraya geçmiş.</p>
+  <ol class="honor">
+      <li class="hrow" data-p="#RVGGJ9LV" tabindex="0" role="button">
+        <span class="hrank">1</span>
+        <span class="hname">sparta <small class="az">IP kadrosunda</small><em>TH18 · 7 tur</em></span>
+        <span class="hbar"><i style="width:100.0%"></i><b>3.00<small>⭐/saldırı</small></b></span>
+        <span class="hnum">21<small>yıldız</small></span>
+        <span class="hnum">7<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%100<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#LVCQ08PLC" tabindex="0" role="button">
+        <span class="hrank">2</span>
+        <span class="hname">》TR X MERT《<em>TH15 · 7 tur</em></span>
+        <span class="hbar"><i style="width:95.2%"></i><b>2.86<small>⭐/saldırı</small></b></span>
+        <span class="hnum">20<small>yıldız</small></span>
+        <span class="hnum">6<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%99<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#8PURC9YCG" tabindex="0" role="button">
+        <span class="hrank">3</span>
+        <span class="hname">Diyar<em>TH16 · 7 tur</em></span>
+        <span class="hbar"><i style="width:95.2%"></i><b>2.86<small>⭐/saldırı</small></b></span>
+        <span class="hnum">20<small>yıldız</small></span>
+        <span class="hnum">6<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%98<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#VG0U22GL" tabindex="0" role="button">
+        <span class="hrank">4</span>
+        <span class="hname">Tortuga<em>TH16 · 7 tur</em></span>
+        <span class="hbar"><i style="width:95.2%"></i><b>2.86<small>⭐/saldırı</small></b></span>
+        <span class="hnum">20<small>yıldız</small></span>
+        <span class="hnum">6<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%98<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#20LLCJVJ2" tabindex="0" role="button">
+        <span class="hrank">5</span>
+        <span class="hname">Maered<em>TH16 · 7 tur</em></span>
+        <span class="hbar"><i style="width:95.2%"></i><b>2.86<small>⭐/saldırı</small></b></span>
+        <span class="hnum">20<small>yıldız</small></span>
+        <span class="hnum">6<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%97<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#9RRCQJCVQ" tabindex="0" role="button">
+        <span class="hrank">6</span>
+        <span class="hname">OVERLORD<em>TH17 · 7 tur</em></span>
+        <span class="hbar"><i style="width:90.5%"></i><b>2.71<small>⭐/saldırı</small></b></span>
+        <span class="hnum">19<small>yıldız</small></span>
+        <span class="hnum">5<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%98<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#2CVGQ82CY" tabindex="0" role="button">
+        <span class="hrank">7</span>
+        <span class="hname">Riddik<em>TH16 · 7 tur</em></span>
+        <span class="hbar"><i style="width:90.5%"></i><b>2.71<small>⭐/saldırı</small></b></span>
+        <span class="hnum">19<small>yıldız</small></span>
+        <span class="hnum">5<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%98<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#GR0VRUR88" tabindex="0" role="button">
+        <span class="hrank">8</span>
+        <span class="hname">Hayri <small class="az">IP kadrosunda</small><em>TH16 · 7 tur</em></span>
+        <span class="hbar"><i style="width:85.7%"></i><b>2.57<small>⭐/saldırı</small></b></span>
+        <span class="hnum">18<small>yıldız</small></span>
+        <span class="hnum">5<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%94<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#UPGPGCVU" tabindex="0" role="button">
+        <span class="hrank">9</span>
+        <span class="hname">hydra<em>TH17 · 7 tur</em></span>
+        <span class="hbar"><i style="width:85.7%"></i><b>2.57<small>⭐/saldırı</small></b></span>
+        <span class="hnum">18<small>yıldız</small></span>
+        <span class="hnum">4<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%91<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#PJC2GVPUP" tabindex="0" role="button">
+        <span class="hrank">10</span>
+        <span class="hname">NİMO <small class="az">IP kadrosunda</small><em>TH16 · 6 tur</em></span>
+        <span class="hbar"><i style="width:94.4%"></i><b>2.83<small>⭐/saldırı</small></b></span>
+        <span class="hnum">17<small>yıldız</small></span>
+        <span class="hnum">5<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%96<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#PRY20RV0P" tabindex="0" role="button">
+        <span class="hrank">11</span>
+        <span class="hname">DeMaNiTuS<em>TH15 · 6 tur</em></span>
+        <span class="hbar"><i style="width:88.9%"></i><b>2.67<small>⭐/saldırı</small></b></span>
+        <span class="hnum">16<small>yıldız</small></span>
+        <span class="hnum">4<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%96<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#QGVYVYYYG" tabindex="0" role="button">
+        <span class="hrank">12</span>
+        <span class="hname">A.R.E.S<em>TH15 · 7 tur</em></span>
+        <span class="hbar"><i style="width:76.2%"></i><b>2.29<small>⭐/saldırı</small></b></span>
+        <span class="hnum">16<small>yıldız</small></span>
+        <span class="hnum">4<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%91<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#9P08R2R8L" tabindex="0" role="button">
+        <span class="hrank">13</span>
+        <span class="hname">£|¡f<em>TH16 · 7 tur</em></span>
+        <span class="hbar"><i style="width:76.2%"></i><b>2.29<small>⭐/saldırı</small></b></span>
+        <span class="hnum">16<small>yıldız</small></span>
+        <span class="hnum">3<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%87<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#YCG982JJU" tabindex="0" role="button">
+        <span class="hrank">14</span>
+        <span class="hname">ɪᴘ✦Cannibal<em>TH16 · 6 tur</em></span>
+        <span class="hbar"><i style="width:66.7%"></i><b>2.00<small>⭐/saldırı</small></b></span>
+        <span class="hnum">12<small>yıldız</small></span>
+        <span class="hnum">2<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%82<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#PCR22CCY2" tabindex="0" role="button">
+        <span class="hrank">15</span>
+        <span class="hname">Game Of ThroneS<em>TH16 · 4 tur</em></span>
+        <span class="hbar"><i style="width:91.7%"></i><b>2.75<small>⭐/saldırı</small></b></span>
+        <span class="hnum">11<small>yıldız</small></span>
+        <span class="hnum">3<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%99<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#R0YR2VULL" tabindex="0" role="button">
+        <span class="hrank">16</span>
+        <span class="hname">hayri<em>TH15 · 4 tur</em></span>
+        <span class="hbar"><i style="width:83.3%"></i><b>2.50<small>⭐/saldırı</small></b></span>
+        <span class="hnum">10<small>yıldız</small></span>
+        <span class="hnum">3<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%92<small>ort. hasar</small></span>
+      </li>
+      <li class="hrow" data-p="#8QC90CJJR" tabindex="0" role="button">
+        <span class="hrank">17</span>
+        <span class="hname">Kral<em>TH16 · 2 tur</em></span>
+        <span class="hbar"><i style="width:100.0%"></i><b>3.00<small>⭐/saldırı</small></b></span>
+        <span class="hnum">6<small>yıldız</small></span>
+        <span class="hnum">2<small>üç yıldız</small></span>
+        <span class="hnum ok">0<small>kaçan hak</small></span>
+        <span class="hnum">%100<small>ort. hasar</small></span>
+      </li>
+  </ol>
+  <p class="foot">abyss'in normal savaş kaydı da var ama klan sadece lig için tutulduğundan buraya almadım. Veri Ağustos liginin 7 turunu kapsıyor; Temmuz'da abyss lige girmemiş.</p>
+</section>
+
 <section>
   <h2>Saldırı Kalitesi</h2>
-  <p class="lede">Lig ve normal savaş birlikte, <b>BB kesme vuruşları hariç</b>. Ortalama, oyuncunun gerçekten savaştığı saldırılardan hesaplanıyor. Yanındaki üç sütun da nasıl savaştığını anlatıyor. 30 Haziran – 22 Ağustos, ilk 20 kişi.</p>
+  <p class="lede">Lig ve normal savaş birlikte, <b>BB kesme vuruşları hariç</b>. Ortalama, oyuncunun gerçekten savaştığı saldırılardan hesaplanıyor. Yanındaki üç sütun nasıl savaştığını anlatıyor. 30 Haziran – 22 Ağustos, ilk 19 kişi.</p>
   <div class="scroll">
     <table class="kalite">
       <thead><tr>
         <th>#</th><th>Oyuncu</th><th>⭐/sld</th><th>Kimi seçiyor</th><th>Ne zaman vuruyor</th><th>Yediği ⭐</th>
       </tr></thead>
       <tbody>
-        <tr data-p="#2PJL22GLQ" tabindex="0"><td class="rk">1</td><td class="tn">BadBoy™</td><td class="strong">3.00</td><td><span class="mid">kendi sırası</span></td><td><span class="up">Erken</span></td><td>2.55</td></tr>
-        <tr data-p="#2CPG0JGQU" tabindex="0"><td class="rk">2</td><td class="tn">IP✦Caraxes</td><td class="strong">2.95</td><td><span class="down">▼ 2 sıra aşağı</span></td><td><span class="mid">Orta</span></td><td>2.60</td></tr>
-        <tr data-p="#C9QYUGCY" tabindex="0"><td class="rk">3</td><td class="tn">AhmetSezer <small class="az">az veri</small></td><td class="strong">2.83</td><td><span class="down">▼ 16 sıra aşağı</span></td><td><span class="down">Son dakika</span></td><td>2.78</td></tr>
-        <tr data-p="#P8G0PGV88" tabindex="0"><td class="rk">4</td><td class="tn">L.O.R.D</td><td class="strong">2.81</td><td><span class="up">▲ 7 sıra yukarı</span></td><td><span class="up">Erken</span></td><td class="bad">2.92</td></tr>
-        <tr data-p="#8J8JRQYC8" tabindex="0"><td class="rk">5</td><td class="tn">NameLessWarrior <small class="az">az veri</small></td><td class="strong">2.80</td><td><span class="mid">kendi sırası</span></td><td><span class="down">Son dakika</span></td><td class="bad">3.00</td></tr>
-        <tr data-p="#22Y9GQV" tabindex="0"><td class="rk">6</td><td class="tn">WpX⚡Murti</td><td class="strong">2.77</td><td><span class="mid">kendi sırası</span></td><td><span class="up">Erken</span></td><td>2.80</td></tr>
-        <tr data-p="#Q0QYRPV9" tabindex="0"><td class="rk">7</td><td class="tn">BERFOLAND</td><td class="strong">2.73</td><td><span class="mid">kendi sırası</span></td><td><span class="mid">Orta</span></td><td>2.60</td></tr>
-        <tr data-p="#RVGGJ9LV" tabindex="0"><td class="rk">8</td><td class="tn">sparta</td><td class="strong">2.71</td><td><span class="mid">kendi sırası</span></td><td><span class="mid">Orta</span></td><td>2.73</td></tr>
-        <tr data-p="#GYR29JYRG" tabindex="0"><td class="rk">9</td><td class="tn">kanewar</td><td class="strong">2.70</td><td><span class="up">▲ 2 sıra yukarı</span></td><td><span class="mid">Orta</span></td><td>2.40</td></tr>
-        <tr data-p="#QPJ29QCP0" tabindex="0"><td class="rk">10</td><td class="tn">پرسپولیس</td><td class="strong">2.68</td><td><span class="mid">kendi sırası</span></td><td><span class="up">Erken</span></td><td>2.79</td></tr>
-        <tr data-p="#GUUY0Y8VP" tabindex="0"><td class="rk">11</td><td class="tn">✧G✧H✧o✧s✧T✧</td><td class="strong">2.60</td><td><span class="up">▲ 7 sıra yukarı</span></td><td><span class="up">Erken</span></td><td>2.56</td></tr>
-        <tr data-p="#9VLR8V20R" tabindex="0"><td class="rk">12</td><td class="tn">Gizem</td><td class="strong">2.57</td><td><span class="up">▲ 3 sıra yukarı</span></td><td><span class="mid">Orta</span></td><td>2.67</td></tr>
-        <tr data-p="#PJC2GVPUP" tabindex="0"><td class="rk">13</td><td class="tn">Prime <small class="az">az veri</small></td><td class="strong">2.57</td><td><span class="mid">kendi sırası</span></td><td><span class="up">Erken</span></td><td class="bad">3.00</td></tr>
-        <tr data-p="#L2RR0JUPL" tabindex="0"><td class="rk">14</td><td class="tn">Джабир <small class="az">az veri</small></td><td class="strong">2.57</td><td><span class="down">▼ 13 sıra aşağı</span></td><td><span class="down">Son dakika</span></td><td>2.67</td></tr>
-        <tr data-p="#Q89Y8YP2C" tabindex="0"><td class="rk">15</td><td class="tn">『 Dark Knight ☬ <small class="az">az veri</small></td><td class="strong">2.50</td><td><span class="down">▼ 3 sıra aşağı</span></td><td><span class="mid">Orta</span></td><td>2.43</td></tr>
-        <tr data-p="#YQPUVPVLC" tabindex="0"><td class="rk">16</td><td class="tn">джабир <small class="az">az veri</small></td><td class="strong">2.33</td><td><span class="down">▼ 7 sıra aşağı</span></td><td><span class="down">Son dakika</span></td><td class="bad">2.88</td></tr>
-        <tr data-p="#PGUCL0CCJ" tabindex="0"><td class="rk">17</td><td class="tn">AkE <small class="az">az veri</small></td><td class="strong">2.33</td><td><span class="down">▼ 3 sıra aşağı</span></td><td><span class="mid">Orta</span></td><td class="bad">3.00</td></tr>
-        <tr data-p="#LR99J2L9" tabindex="0"><td class="rk">18</td><td class="tn">EMİN</td><td class="strong">2.25</td><td><span class="down">▼ 2 sıra aşağı</span></td><td><span class="mid">Orta</span></td><td>2.44</td></tr>
+        <tr data-p="#2PJL22GLQ" tabindex="0"><td class="rk">1</td><td class="tn">BadBoy™</td><td class="strong">3.00</td><td><span class="mid">kendi sırası</span></td><td><span class="up">Erken</span></td><td>2.68</td></tr>
+        <tr data-p="#2CPG0JGQU" tabindex="0"><td class="rk">2</td><td class="tn">IP✦Caraxes</td><td class="strong">2.94</td><td><span class="down">▼ 2 sıra aşağı</span></td><td><span class="mid">Orta</span></td><td>2.42</td></tr>
+        <tr data-p="#C9QYUGCY" tabindex="0"><td class="rk">3</td><td class="tn">AhmetSezer</td><td class="strong">2.89</td><td><span class="down">▼ 14 sıra aşağı</span></td><td><span class="down">Son dakika</span></td><td>2.60</td></tr>
+        <tr data-p="#P8G0PGV88" tabindex="0"><td class="rk">4</td><td class="tn">L.O.R.D</td><td class="strong">2.81</td><td><span class="up">▲ 7 sıra yukarı</span></td><td><span class="up">Erken</span></td><td class="bad">2.90</td></tr>
+        <tr data-p="#22Y9GQV" tabindex="0"><td class="rk">5</td><td class="tn">WpX⚡Murti</td><td class="strong">2.76</td><td><span class="mid">kendi sırası</span></td><td><span class="up">Erken</span></td><td>2.68</td></tr>
+        <tr data-p="#GYR29JYRG" tabindex="0"><td class="rk">6</td><td class="tn">kanewar</td><td class="strong">2.75</td><td><span class="up">▲ 3 sıra yukarı</span></td><td><span class="mid">Orta</span></td><td>2.44</td></tr>
+        <tr data-p="#RVGGJ9LV" tabindex="0"><td class="rk">7</td><td class="tn">sparta</td><td class="strong">2.73</td><td><span class="mid">kendi sırası</span></td><td><span class="mid">Orta</span></td><td>2.69</td></tr>
+        <tr data-p="#Q0QYRPV9" tabindex="0"><td class="rk">8</td><td class="tn">BERFOLAND</td><td class="strong">2.71</td><td><span class="mid">kendi sırası</span></td><td><span class="mid">Orta</span></td><td>2.50</td></tr>
+        <tr data-p="#GUUY0Y8VP" tabindex="0"><td class="rk">9</td><td class="tn">✧G✧H✧o✧s✧T✧</td><td class="strong">2.65</td><td><span class="up">▲ 8 sıra yukarı</span></td><td><span class="up">Erken</span></td><td>2.40</td></tr>
+        <tr data-p="#8J8JRQYC8" tabindex="0"><td class="rk">10</td><td class="tn">NameLessWarrior</td><td class="strong">2.64</td><td><span class="mid">kendi sırası</span></td><td><span class="down">Son dakika</span></td><td>2.83</td></tr>
+        <tr data-p="#QPJ29QCP0" tabindex="0"><td class="rk">11</td><td class="tn">پرسپولیس</td><td class="strong">2.59</td><td><span class="mid">kendi sırası</span></td><td><span class="up">Erken</span></td><td>2.77</td></tr>
+        <tr data-p="#9VLR8V20R" tabindex="0"><td class="rk">12</td><td class="tn">Gizem</td><td class="strong">2.59</td><td><span class="up">▲ 3 sıra yukarı</span></td><td><span class="mid">Orta</span></td><td>2.47</td></tr>
+        <tr data-p="#PJC2GVPUP" tabindex="0"><td class="rk">13</td><td class="tn">Prime</td><td class="strong">2.54</td><td><span class="up">▲ 2 sıra yukarı</span></td><td><span class="up">Erken</span></td><td class="bad">3.00</td></tr>
+        <tr data-p="#L2RR0JUPL" tabindex="0"><td class="rk">14</td><td class="tn">Джабир</td><td class="strong">2.50</td><td><span class="down">▼ 10 sıra aşağı</span></td><td><span class="down">Son dakika</span></td><td>2.70</td></tr>
+        <tr data-p="#80PURL8PR" tabindex="0"><td class="rk">15</td><td class="tn">ouzbusiness <small class="az">az veri</small></td><td class="strong">2.50</td><td><span class="mid">kendi sırası</span></td><td><span class="down">Son dakika</span></td><td>2.57</td></tr>
+        <tr data-p="#Q89Y8YP2C" tabindex="0"><td class="rk">16</td><td class="tn">『 Dark Knight ☬</td><td class="strong">2.45</td><td><span class="down">▼ 2 sıra aşağı</span></td><td><span class="mid">Orta</span></td><td>2.50</td></tr>
+        <tr data-p="#YQPUVPVLC" tabindex="0"><td class="rk">17</td><td class="tn">джабир</td><td class="strong">2.45</td><td><span class="down">▼ 10 sıra aşağı</span></td><td><span class="down">Son dakika</span></td><td class="bad">2.93</td></tr>
+        <tr data-p="#PGUCL0CCJ" tabindex="0"><td class="rk">18</td><td class="tn">AkE <small class="az">az veri</small></td><td class="strong">2.33</td><td><span class="down">▼ 3 sıra aşağı</span></td><td><span class="mid">Orta</span></td><td class="bad">3.00</td></tr>
+        <tr data-p="#LR99J2L9" tabindex="0"><td class="rk">19</td><td class="tn">EMİN</td><td class="strong">2.25</td><td><span class="down">▼ 2 sıra aşağı</span></td><td><span class="mid">Orta</span></td><td>2.33</td></tr>
       </tbody>
     </table>
   </div>
@@ -594,24 +771,24 @@ html{scroll-behavior:smooth}
 
 <section>
   <h2>Üç Uyarı</h2>
-  <p class="lede">Klanın savaş gücü yerinde ve ligde kusursuz. Kaybedilen yıldızlar beceriden değil, normal savaştaki katılımdan gidiyor.</p>
+  <p class="lede">Klanın savaş gücü yerinde ve ligde neredeyse kusursuz. Kaybedilen yıldızlar beceriden değil, normal savaştaki katılımdan gidiyor.</p>
   <div class="findings">
     <div class="card sev-hi">
       <h3>Ligde kusursuz, normal savaşta dağınık</h3>
       <div class="who">Klan geneli</div>
-      <p>14 lig turunda 210 hakkın <b style="color:var(--jade)">200'ü</b> kullanılmış, saldırıların %63'ü üç yıldız. Normal savaşta ise 340 hakkın 54'ü <b style="color:var(--clay)">hiç kullanılmamış</b>. Aynı kadro, iki farklı klan gibi oynuyor.</p>
+      <p>14 lig turunda 210 hakkın <b style="color:var(--jade)">206'sı</b> kullanılmış, saldırıların %73'ü üç yıldız. Normal savaşta ise 340 hakkın 49'u <b style="color:var(--clay)">hiç kullanılmamış</b>. Aynı kadro, iki farklı klan gibi oynuyor.</p>
     </div>
     <div class="card sev-mid">
       <h3>Normal savaşta hak kaçıranlar</h3>
       <div class="who">AhmetSezer</div>
-      <p>Ligde 3 turda 3 saldırı, 9 yıldız, %100 hasar — klanın en isabetli oyuncusu. Ama normal savaşlarda <b style="color:var(--clay)">8 hak</b> boşa gitmiş. Ligde güvenilir, normal savaşta yok.</p>
-      <div class="who">джабир · EMİN</div>
-      <p>Aynı tablo daha küçük ölçekte: 5 ve 3 kaçan hak. Üçünün de lig sicili temiz, tek kaçırdıkları hak yok.</p>
+      <p>Ligde 7 turda 18 yıldız — güvenilir. Ama normal savaşlarda <b style="color:var(--clay)">16 hakkın 12'si</b> boşa gitmiş. Ligde var, normal savaşta yok.</p>
+      <div class="who">джабир · NameLessWarrior · EMİN</div>
+      <p>Aynı tablo daha küçük ölçekte: 5, 4 ve 3 kaçan hak. Dördünün de lig sicili neredeyse temiz.</p>
     </div>
     <div class="card sev-lo">
       <h3>Düzeltme: kanewar haksız yere işaretlenmişti</h3>
       <div class="who">kanewar</div>
-      <p>Önceki raporda “%66 hasar, ordu düzeni bozuk” yazıyordu. Yanlıştı: 16 saldırısının <b style="color:var(--ink)">12'si BB kesme</b> — zaten üçlenmiş köye yapılan temizlik vuruşu. Bunlar ayıklanınca ligde <b style="color:var(--jade)">6 turda 16 yıldız, %96 hasar</b>, hiç kaçan hak yok. Klanın BB kesme yükünü tek başına taşıyan adam.</p>
+      <p>Önceki raporda “%66 hasar, ordu düzeni bozuk” yazıyordu. Yanlıştı: saldırılarının <b style="color:var(--ink)">14'ü BB kesme</b> — zaten üçlenmiş köye yapılan temizlik vuruşu, %5 hasarla çıkılıyor. Bunlar ayıklanınca ligde <b style="color:var(--jade)">14 turun 14'ünde, 40 yıldız, %98 hasar, 0 kaçan hak</b>. Klanın ikinci en iyi lig oyuncusu ve BB kesme yükünü tek başına taşıyan adam.</p>
     </div>
   </div>
 </section>
@@ -629,32 +806,30 @@ html{scroll-behavior:smooth}
   <button class="split acc" type="button" aria-expanded="false"><span>Savaşa katılanlar</span><em class="say">23 kişi</em><i class="ok" aria-hidden="true">&#9660;</i></button>
   <div class="accbody"><div class="accin"><div class="scroll">
     <table>
-      <thead><tr>
-        <th>Oyuncu</th><th>Rol</th><th>TH</th><th>Savaş</th><th>Saldırı</th><th>Kaçan</th><th>BB kesme</th><th>Yıldız</th><th>⭐/sld</th><th>Ort. hasar</th><th>Bağış</th><th>Aldığı</th>
-      </tr></thead>
+      <thead><tr><th>Oyuncu</th><th>Rol</th><th>TH</th><th>Savaş</th><th>Saldırı</th><th>Kaçan</th><th>BB kesme</th><th>Yıldız</th><th>⭐/sld</th><th>Ort. hasar</th><th>Bağış</th><th>Aldığı</th></tr></thead>
       <tbody>
-        <tr data-p="#2CPG0JGQU" tabindex="0"><td class="tn">IP✦Caraxes</td><td>Lider</td><td>18</td><td>15</td><td>22</td><td>0</td><td class="dim">2</td><td class="strong">65</td><td>2.95</td><td>%99</td><td>1,978</td><td class="dim">148</td></tr>
-        <tr data-p="#22Y9GQV" tabindex="0"><td class="tn">WpX⚡Murti</td><td>Yrd. Lider</td><td>18</td><td>15</td><td>22</td><td>0</td><td class="dim">2</td><td class="strong">61</td><td>2.77</td><td>%98</td><td>678</td><td class="dim">1,331</td></tr>
-        <tr data-p="#Q0QYRPV9" tabindex="0"><td class="tn">BERFOLAND</td><td>Yrd. Lider</td><td>18</td><td>15</td><td>22</td><td>0</td><td class="dim">2</td><td class="strong">60</td><td>2.73</td><td>%98</td><td>3,410</td><td class="dim">692</td></tr>
-        <tr data-p="#QPJ29QCP0" tabindex="0"><td class="tn">پرسپولیس</td><td>Kıdemli</td><td>17</td><td>15</td><td>22</td><td>0</td><td class="dim">2</td><td class="strong">59</td><td>2.68</td><td>%97</td><td>489</td><td class="dim">88</td></tr>
-        <tr data-p="#2PJL22GLQ" tabindex="0"><td class="tn">BadBoy™</td><td>Yrd. Lider</td><td>16</td><td>11</td><td>16</td><td class="bad">2</td><td class="dim">–</td><td class="strong">48</td><td>3.00</td><td>%100</td><td>1,382</td><td class="dim">1,920</td></tr>
-        <tr data-p="#P8G0PGV88" tabindex="0"><td class="tn">L.O.R.D</td><td>Kıdemli</td><td>18</td><td>12</td><td>16</td><td class="bad">1</td><td class="dim">1</td><td class="strong">45</td><td>2.81</td><td>%97</td><td>1,911</td><td class="dim">5,854</td></tr>
-        <tr data-p="#GUUY0Y8VP" tabindex="0"><td class="tn">✧G✧H✧o✧s✧T✧</td><td>Yrd. Lider</td><td>18</td><td>9</td><td>15</td><td>0</td><td class="dim">–</td><td class="strong">39</td><td>2.60</td><td>%93</td><td>2,990</td><td class="dim">4,237</td></tr>
-        <tr data-p="#RVGGJ9LV" tabindex="0"><td class="tn">sparta</td><td>Yrd. Lider</td><td>18</td><td>11</td><td>14</td><td>0</td><td class="dim">5</td><td class="strong">38</td><td>2.71</td><td>%92</td><td>578</td><td class="dim">178</td></tr>
-        <tr data-p="#9VLR8V20R" tabindex="0"><td class="tn">Gizem</td><td>Yrd. Lider</td><td>18</td><td>9</td><td>14</td><td>0</td><td class="dim">1</td><td class="strong">36</td><td>2.57</td><td>%97</td><td>600</td><td class="dim">806</td></tr>
-        <tr data-p="#GYR29JYRG" tabindex="0"><td class="tn">kanewar</td><td>Yrd. Lider</td><td>18</td><td>15</td><td>10</td><td class="bad">2</td><td class="dim">12</td><td class="strong">27</td><td>2.70</td><td>%94</td><td>1,044</td><td class="dim">3,790</td></tr>
-        <tr data-p="#L2RR0JUPL" tabindex="0"><td class="tn">Джабир</td><td>Kıdemli</td><td>18</td><td>6</td><td>7</td><td>0</td><td class="dim">–</td><td class="strong">18</td><td>2.57</td><td>%91</td><td>362</td><td class="dim">772</td></tr>
-        <tr data-p="#LR99J2L9" tabindex="0"><td class="tn">EMİN</td><td>Kıdemli</td><td>18</td><td>9</td><td>8</td><td class="bad">3</td><td class="dim">2</td><td class="strong">18</td><td>2.25</td><td>%89</td><td>555</td><td class="dim">328</td></tr>
-        <tr data-p="#PJC2GVPUP" tabindex="0"><td class="tn">Prime</td><td>Yrd. Lider</td><td>17</td><td>5</td><td>7</td><td>0</td><td class="dim">–</td><td class="strong">18</td><td>2.57</td><td>%88</td><td>440</td><td class="dim">1,441</td></tr>
-        <tr data-p="#C9QYUGCY" tabindex="0"><td class="tn">AhmetSezer</td><td>Kıdemli</td><td>18</td><td>9</td><td>6</td><td class="bad">8</td><td class="dim">1</td><td class="strong">17</td><td>2.83</td><td>%96</td><td>1,701</td><td class="dim">3,698</td></tr>
-        <tr data-p="#Q89Y8YP2C" tabindex="0"><td class="tn">『 Dark Knight ☬</td><td>Kıdemli</td><td>18</td><td>7</td><td>6</td><td class="bad">1</td><td class="dim">4</td><td class="strong">15</td><td>2.50</td><td>%98</td><td>1,061</td><td class="dim">821</td></tr>
-        <tr data-p="#8J8JRQYC8" tabindex="0"><td class="tn">NameLessWarrior</td><td>Yrd. Lider</td><td>18</td><td>7</td><td>5</td><td class="bad">2</td><td class="dim">4</td><td class="strong">14</td><td>2.80</td><td>%95</td><td>1,036</td><td class="dim">1,329</td></tr>
+        <tr data-p="#2CPG0JGQU" tabindex="0"><td class="tn">IP✦Caraxes</td><td>Lider</td><td>18</td><td>25</td><td>34</td><td>0</td><td class="dim">2</td><td class="strong">100</td><td>2.94</td><td>%99</td><td>1,978</td><td class="dim">148</td></tr>
+        <tr data-p="#22Y9GQV" tabindex="0"><td class="tn">WpX⚡Murti</td><td>Yrd. Lider</td><td>18</td><td>25</td><td>34</td><td>0</td><td class="dim">2</td><td class="strong">94</td><td>2.76</td><td>%98</td><td>678</td><td class="dim">1,331</td></tr>
+        <tr data-p="#Q0QYRPV9" tabindex="0"><td class="tn">BERFOLAND</td><td>Yrd. Lider</td><td>18</td><td>25</td><td>34</td><td>0</td><td class="dim">2</td><td class="strong">92</td><td>2.71</td><td>%97</td><td>3,410</td><td class="dim">692</td></tr>
+        <tr data-p="#QPJ29QCP0" tabindex="0"><td class="tn">پرسپولیس</td><td>Kıdemli</td><td>17</td><td>24</td><td>32</td><td>0</td><td class="dim">2</td><td class="strong">83</td><td>2.59</td><td>%96</td><td>489</td><td class="dim">88</td></tr>
+        <tr data-p="#2PJL22GLQ" tabindex="0"><td class="tn">BadBoy™</td><td>Yrd. Lider</td><td>16</td><td>19</td><td>26</td><td class="bad">2</td><td class="dim">–</td><td class="strong">78</td><td>3.00</td><td>%100</td><td>1,382</td><td class="dim">1,920</td></tr>
+        <tr data-p="#P8G0PGV88" tabindex="0"><td class="tn">L.O.R.D</td><td>Kıdemli</td><td>18</td><td>21</td><td>26</td><td class="bad">1</td><td class="dim">1</td><td class="strong">73</td><td>2.81</td><td>%96</td><td>1,911</td><td class="dim">5,854</td></tr>
+        <tr data-p="#GUUY0Y8VP" tabindex="0"><td class="tn">✧G✧H✧o✧s✧T✧</td><td>Yrd. Lider</td><td>18</td><td>15</td><td>23</td><td>0</td><td class="dim">–</td><td class="strong">61</td><td>2.65</td><td>%94</td><td>2,990</td><td class="dim">4,237</td></tr>
+        <tr data-p="#RVGGJ9LV" tabindex="0"><td class="tn">sparta</td><td>Yrd. Lider</td><td>18</td><td>17</td><td>22</td><td>0</td><td class="dim">5</td><td class="strong">60</td><td>2.73</td><td>%93</td><td>578</td><td class="dim">178</td></tr>
+        <tr data-p="#9VLR8V20R" tabindex="0"><td class="tn">Gizem</td><td>Yrd. Lider</td><td>18</td><td>15</td><td>22</td><td>0</td><td class="dim">1</td><td class="strong">57</td><td>2.59</td><td>%98</td><td>600</td><td class="dim">806</td></tr>
+        <tr data-p="#GYR29JYRG" tabindex="0"><td class="tn">kanewar</td><td>Yrd. Lider</td><td>18</td><td>25</td><td>20</td><td class="bad">2</td><td class="dim">14</td><td class="strong">55</td><td>2.75</td><td>%96</td><td>1,044</td><td class="dim">3,790</td></tr>
+        <tr data-p="#LR99J2L9" tabindex="0"><td class="tn">EMİN</td><td>Kıdemli</td><td>18</td><td>16</td><td>16</td><td class="bad">3</td><td class="dim">2</td><td class="strong">36</td><td>2.25</td><td>%90</td><td>555</td><td class="dim">328</td></tr>
+        <tr data-p="#PJC2GVPUP" tabindex="0"><td class="tn">Prime</td><td>Yrd. Lider</td><td>17</td><td>10</td><td>13</td><td>0</td><td class="dim">–</td><td class="strong">33</td><td>2.54</td><td>%91</td><td>440</td><td class="dim">1,441</td></tr>
+        <tr data-p="#L2RR0JUPL" tabindex="0"><td class="tn">Джабир</td><td>Kıdemli</td><td>18</td><td>12</td><td>12</td><td class="bad">1</td><td class="dim">–</td><td class="strong">30</td><td>2.50</td><td>%93</td><td>362</td><td class="dim">772</td></tr>
+        <tr data-p="#8J8JRQYC8" tabindex="0"><td class="tn">NameLessWarrior</td><td>Yrd. Lider</td><td>18</td><td>13</td><td>11</td><td class="bad">4</td><td class="dim">4</td><td class="strong">29</td><td>2.64</td><td>%97</td><td>1,036</td><td class="dim">1,329</td></tr>
+        <tr data-p="#Q89Y8YP2C" tabindex="0"><td class="tn">『 Dark Knight ☬</td><td>Kıdemli</td><td>18</td><td>12</td><td>11</td><td class="bad">1</td><td class="dim">5</td><td class="strong">27</td><td>2.45</td><td>%93</td><td>1,061</td><td class="dim">821</td></tr>
+        <tr data-p="#YQPUVPVLC" tabindex="0"><td class="tn">джабир</td><td>Kıdemli</td><td>18</td><td>14</td><td>11</td><td class="bad">6</td><td class="dim">1</td><td class="strong">27</td><td>2.45</td><td>%87</td><td>169</td><td class="dim">346</td></tr>
+        <tr data-p="#C9QYUGCY" tabindex="0"><td class="tn">AhmetSezer</td><td>Kıdemli</td><td>18</td><td>15</td><td>9</td><td class="bad">13</td><td class="dim">1</td><td class="strong">26</td><td>2.89</td><td>%97</td><td>1,701</td><td class="dim">3,698</td></tr>
+        <tr data-p="#80PURL8PR" tabindex="0"><td class="tn">ouzbusiness</td><td>Yrd. Lider</td><td>17</td><td>7</td><td>6</td><td class="bad">1</td><td class="dim">1</td><td class="strong">15</td><td>2.50</td><td>%89</td><td>380</td><td class="dim">4,676</td></tr>
         <tr data-p="#PGUCL0CCJ" tabindex="0"><td class="tn">AkE</td><td>Kıdemli</td><td>18</td><td>3</td><td>6</td><td>0</td><td class="dim">–</td><td class="strong">14</td><td>2.33</td><td>%88</td><td>2,177</td><td class="dim">1,267</td></tr>
-        <tr data-p="#YQPUVPVLC" tabindex="0"><td class="tn">джабир</td><td>Kıdemli</td><td>18</td><td>8</td><td>6</td><td class="bad">5</td><td class="dim">1</td><td class="strong">14</td><td>2.33</td><td>%84</td><td>169</td><td class="dim">346</td></tr>
-        <tr data-p="#GJ09LV20G" tabindex="0"><td class="tn">XISPOS</td><td>Kıdemli</td><td>18</td><td>2</td><td>3</td><td>0</td><td class="dim">1</td><td class="strong">8</td><td>2.67</td><td>%91</td><td>1,007</td><td class="dim">649</td></tr>
-        <tr data-p="#80PURL8PR" tabindex="0"><td class="tn">ouzbusiness</td><td>Yrd. Lider</td><td>17</td><td>3</td><td>2</td><td class="bad">1</td><td class="dim">1</td><td class="strong">6</td><td>3.00</td><td>%100</td><td>380</td><td class="dim">4,676</td></tr>
+        <tr data-p="#GJ09LV20G" tabindex="0"><td class="tn">XISPOS</td><td>Kıdemli</td><td>18</td><td>3</td><td>3</td><td class="bad">2</td><td class="dim">1</td><td class="strong">8</td><td>2.67</td><td>%91</td><td>1,007</td><td class="dim">649</td></tr>
         <tr data-p="#2LGLPJPY0" tabindex="0"><td class="tn">zelf</td><td>Kıdemli</td><td>17</td><td>1</td><td>2</td><td>0</td><td class="dim">–</td><td class="strong">6</td><td>3.00</td><td>%100</td><td>1,547</td><td class="dim">0</td></tr>
-        <tr data-p="#9VCJYCQVJ" tabindex="0"><td class="tn">Sergen3230</td><td>Kıdemli</td><td>18</td><td>3</td><td>2</td><td class="bad">2</td><td class="dim">2</td><td class="strong">5</td><td>2.50</td><td>%86</td><td>148</td><td class="dim">0</td></tr>
+        <tr data-p="#9VCJYCQVJ" tabindex="0"><td class="tn">Sergen3230</td><td>Kıdemli</td><td>18</td><td>4</td><td>2</td><td class="bad">2</td><td class="dim">4</td><td class="strong">5</td><td>2.50</td><td>%86</td><td>148</td><td class="dim">0</td></tr>
         <tr data-p="#2920RP2YR" tabindex="0"><td class="tn">JOKER</td><td>Kıdemli</td><td>17</td><td>1</td><td>1</td><td>0</td><td class="dim">1</td><td class="strong">3</td><td>3.00</td><td>%100</td><td>952</td><td class="dim">203</td></tr>
       </tbody>
     </table>
@@ -662,9 +837,7 @@ html{scroll-behavior:smooth}
   <button class="split acc" type="button" aria-expanded="false"><span>Hiç savaşmayanlar</span><em class="say">23 kişi</em><i class="ok" aria-hidden="true">&#9660;</i></button>
   <div class="accbody"><div class="accin"><div class="scroll">
     <table>
-      <thead><tr>
-        <th>Oyuncu</th><th>Rol</th><th>TH</th><th>Savaş kaydı</th><th>Bağış</th><th>Aldığı</th>
-      </tr></thead>
+      <thead><tr><th>Oyuncu</th><th>Rol</th><th>TH</th><th>Savaş kaydı</th><th>Bağış</th><th>Aldığı</th></tr></thead>
       <tbody>
         <tr data-p="#2LULR0JJ0" tabindex="0"><td class="tn">savaşçı</td><td>Kıdemli</td><td>18</td><td class="dim nowar">son 25 savaşta hiç yok</td><td>1,014</td><td class="dim">1,920</td></tr>
         <tr data-p="#8VLJ0UJ8Y" tabindex="0"><td class="tn">EFE</td><td>Kıdemli</td><td>16</td><td class="dim nowar">son 25 savaşta hiç yok</td><td>896</td><td class="dim">535</td></tr>
@@ -792,82 +965,101 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
 
 <script>
 (function(){
-  var UYE = [{"t":"#2CPG0JGQU","n":"IP✦Caraxes","h":18,"v":3.0,"v2":2.95,"tur":6},{"t":"#2PJL22GLQ","n":"BadBoy™","h":16,"v":3.0,"v2":3.0,"tur":4},{"t":"#C9QYUGCY","n":"AhmetSezer","h":18,"v":3.0,"v2":2.83,"tur":3},{"t":"#GUUY0Y8VP","n":"✧G✧H✧o✧s✧T✧","h":18,"v":3.0,"v2":2.6,"tur":3},{"t":"#PJC2GVPUP","n":"Prime","h":17,"v":3.0,"v2":2.57,"tur":3},{"t":"#80PURL8PR","n":"ouzbusiness","h":17,"v":3.0,"v2":3.0,"tur":2},{"t":"#22Y9GQV","n":"WpX⚡Murti","h":18,"v":2.83,"v2":2.77,"tur":6},{"t":"#P8G0PGV88","n":"L.O.R.D","h":18,"v":2.67,"v2":2.81,"tur":6},{"t":"#Q0QYRPV9","n":"BERFOLAND","h":18,"v":2.67,"v2":2.73,"tur":6},{"t":"#GYR29JYRG","n":"kanewar","h":18,"v":2.67,"v2":2.7,"tur":6},{"t":"#QPJ29QCP0","n":"پرسپولیس","h":17,"v":2.67,"v2":2.68,"tur":6},{"t":"#8J8JRQYC8","n":"NameLessWarrior","h":18,"v":2.67,"v2":2.8,"tur":3},{"t":"#Q89Y8YP2C","n":"『 Dark Knight ☬","h":18,"v":2.67,"v2":2.5,"tur":3},{"t":"#L2RR0JUPL","n":"Джабир","h":18,"v":2.4,"v2":2.57,"tur":5},{"t":"#RVGGJ9LV","n":"sparta","h":18,"v":2.33,"v2":2.71,"tur":3},{"t":"#9VLR8V20R","n":"Gizem","h":18,"v":2.33,"v2":2.57,"tur":3},{"t":"#YQPUVPVLC","n":"джабир","h":18,"v":2.25,"v2":2.33,"tur":4},{"t":"#LR99J2L9","n":"EMİN","h":18,"v":2.2,"v2":2.25,"tur":5},{"t":"#2LGLPJPY0","n":"zelf","h":17,"v":null,"v2":3.0,"tur":0},{"t":"#2920RP2YR","n":"JOKER","h":17,"v":null,"v2":3.0,"tur":0},{"t":"#GJ09LV20G","n":"XISPOS","h":18,"v":null,"v2":2.67,"tur":0},{"t":"#9VCJYCQVJ","n":"Sergen3230","h":18,"v":null,"v2":2.5,"tur":0},{"t":"#PGUCL0CCJ","n":"AkE","h":18,"v":null,"v2":2.33,"tur":0},{"t":"#2LULR0JJ0","n":"savaşçı","h":18,"v":null,"v2":null,"tur":0},{"t":"#8VLJ0UJ8Y","n":"EFE","h":16,"v":null,"v2":null,"tur":0},{"t":"#GYUVQGCC0","n":"Yusuf TALİ","h":17,"v":null,"v2":null,"tur":0},{"t":"#GJ000J02G","n":"Mustafa","h":8,"v":null,"v2":null,"tur":0},{"t":"#V0PQ9YV0","n":"tehlike","h":18,"v":null,"v2":null,"tur":0},{"t":"#G2YQRYQUR","n":"⚡⚡Pence⚡⚡","h":11,"v":null,"v2":null,"tur":0},{"t":"#2RJ80G0RG","n":"☆ Yunus Reis ☆","h":14,"v":null,"v2":null,"tur":0},{"t":"#GJY89U90V","n":"BombardiloŞ Cro","h":9,"v":null,"v2":null,"tur":0},{"t":"#GR0VRUR88","n":"Hayri","h":17,"v":null,"v2":null,"tur":0},{"t":"#JVQU98QP","n":"Depresyon","h":18,"v":null,"v2":null,"tur":0},{"t":"#2RJL8UU2J","n":"UnConScioNabLe","h":17,"v":null,"v2":null,"tur":0},{"t":"#JYPRYUG","n":"✴✴£ra¥✴✴","h":16,"v":null,"v2":null,"tur":0},{"t":"#Q2UULUVQ9","n":"Sadiqov085","h":18,"v":null,"v2":null,"tur":0},{"t":"#2JU99VJ0","n":"TAHA BEY","h":15,"v":null,"v2":null,"tur":0},{"t":"#LVG0L9V99","n":"kurt","h":17,"v":null,"v2":null,"tur":0},{"t":"#GVV9UPP28","n":"Ｉam丨SORRY亗","h":12,"v":null,"v2":null,"tur":0},{"t":"#8RGUR2UV2","n":"A⚔️K ✨AD HOC✨","h":18,"v":null,"v2":null,"tur":0},{"t":"#G0YPGCLJ0","n":"K.S ROCCO","h":18,"v":null,"v2":null,"tur":0},{"t":"#GPY0QG8PP","n":"K.S SWOXY","h":18,"v":null,"v2":null,"tur":0},{"t":"#PVVRCJJ8V","n":"Ayyıldız time","h":17,"v":null,"v2":null,"tur":0},{"t":"#GRPQQLPCU","n":"REUSE-KAK-22TR","h":11,"v":null,"v2":null,"tur":0},{"t":"#2P8LP882G","n":"CandyGirl","h":10,"v":null,"v2":null,"tur":0},{"t":"#YVG82PY29","n":"irem__","h":17,"v":null,"v2":null,"tur":0}];
-  var KEY = 'ip-kadro-v3', HEDEF = 15;
+  document.querySelectorAll('button.split.acc').forEach(function(b){
+    var g = b.nextElementSibling;
+    b.addEventListener('click', function(){
+      var acik = b.getAttribute('aria-expanded') === 'true';
+      b.setAttribute('aria-expanded', acik ? 'false' : 'true');
+      g.classList.toggle('acik', !acik);
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  var UYE = [{"t":"#2PJL22GLQ","n":"BadBoy™","h":16,"ev":"ip","ip":3.0,"ipt":10,"ab":null,"abt":0,"gen":3.0},{"t":"#C9QYUGCY","n":"AhmetSezer","h":18,"ev":"ip","ip":3.0,"ipt":7,"ab":null,"abt":0,"gen":2.89},{"t":"#2CPG0JGQU","n":"IP✦Caraxes","h":18,"ev":"ip","ip":2.93,"ipt":14,"ab":null,"abt":0,"gen":2.94},{"t":"#GYR29JYRG","n":"kanewar","h":18,"ev":"ip","ip":2.86,"ipt":14,"ab":null,"abt":0,"gen":2.75},{"t":"#GUUY0Y8VP","n":"✧G✧H✧o✧s✧T✧","h":18,"ev":"ip","ip":2.86,"ipt":7,"ab":null,"abt":0,"gen":2.65},{"t":"#PJC2GVPUP","n":"Prime","h":17,"ev":"ip","ip":2.86,"ipt":7,"ab":2.83,"abt":6,"gen":2.54},{"t":"#P8G0PGV88","n":"L.O.R.D","h":18,"ev":"ip","ip":2.71,"ipt":14,"ab":null,"abt":0,"gen":2.81},{"t":"#22Y9GQV","n":"WpX⚡Murti","h":18,"ev":"ip","ip":2.71,"ipt":14,"ab":null,"abt":0,"gen":2.76},{"t":"#8J8JRQYC8","n":"NameLessWarrior","h":18,"ev":"ip","ip":2.71,"ipt":7,"ab":null,"abt":0,"gen":2.64},{"t":"#Q0QYRPV9","n":"BERFOLAND","h":18,"ev":"ip","ip":2.64,"ipt":14,"ab":null,"abt":0,"gen":2.71},{"t":"#QPJ29QCP0","n":"پرسپولیس","h":17,"ev":"ip","ip":2.57,"ipt":14,"ab":null,"abt":0,"gen":2.59},{"t":"#Q89Y8YP2C","n":"『 Dark Knight ☬","h":18,"ev":"ip","ip":2.57,"ipt":7,"ab":null,"abt":0,"gen":2.45},{"t":"#80PURL8PR","n":"ouzbusiness","h":17,"ev":"ip","ip":2.5,"ipt":6,"ab":null,"abt":0,"gen":2.5},{"t":"#YQPUVPVLC","n":"джабир","h":18,"ev":"ip","ip":2.44,"ipt":10,"ab":null,"abt":0,"gen":2.45},{"t":"#RVGGJ9LV","n":"sparta","h":18,"ev":"ip","ip":2.43,"ipt":7,"ab":3.0,"abt":7,"gen":2.73},{"t":"#9VLR8V20R","n":"Gizem","h":18,"ev":"ip","ip":2.43,"ipt":7,"ab":null,"abt":0,"gen":2.59},{"t":"#L2RR0JUPL","n":"Джабир","h":18,"ev":"ip","ip":2.4,"ipt":11,"ab":null,"abt":0,"gen":2.5},{"t":"#LR99J2L9","n":"EMİN","h":18,"ev":"ip","ip":2.36,"ipt":11,"ab":null,"abt":0,"gen":2.25},{"t":"#2LGLPJPY0","n":"zelf","h":17,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":3.0},{"t":"#2920RP2YR","n":"JOKER","h":17,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":3.0},{"t":"#8QC90CJJR","n":"Kral","h":16,"ev":"ab","ip":null,"ipt":0,"ab":3.0,"abt":2,"gen":3.0},{"t":"#LVCQ08PLC","n":"》TR X MERT《","h":15,"ev":"ab","ip":null,"ipt":0,"ab":2.86,"abt":7,"gen":2.86},{"t":"#20LLCJVJ2","n":"Maered","h":16,"ev":"ab","ip":null,"ipt":0,"ab":2.86,"abt":7,"gen":2.86},{"t":"#VG0U22GL","n":"Tortuga","h":16,"ev":"ab","ip":null,"ipt":0,"ab":2.86,"abt":7,"gen":2.86},{"t":"#8PURC9YCG","n":"Diyar","h":16,"ev":"ab","ip":null,"ipt":0,"ab":2.86,"abt":7,"gen":2.86},{"t":"#PCR22CCY2","n":"Game Of ThroneS","h":16,"ev":"ab","ip":null,"ipt":0,"ab":2.75,"abt":4,"gen":2.75},{"t":"#9RRCQJCVQ","n":"OVERLORD","h":17,"ev":"ab","ip":null,"ipt":0,"ab":2.71,"abt":7,"gen":2.71},{"t":"#2CVGQ82CY","n":"Riddik","h":16,"ev":"ab","ip":null,"ipt":0,"ab":2.71,"abt":7,"gen":2.71},{"t":"#GJ09LV20G","n":"XISPOS","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":2.67},{"t":"#PRY20RV0P","n":"DeMaNiTuS","h":15,"ev":"ab","ip":null,"ipt":0,"ab":2.67,"abt":6,"gen":2.67},{"t":"#UPGPGCVU","n":"hydra","h":17,"ev":"ab","ip":null,"ipt":0,"ab":2.57,"abt":7,"gen":2.57},{"t":"#9VCJYCQVJ","n":"Sergen3230","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":2.5},{"t":"#R0YR2VULL","n":"hayri","h":15,"ev":"ab","ip":null,"ipt":0,"ab":2.5,"abt":4,"gen":2.5},{"t":"#PGUCL0CCJ","n":"AkE","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":2.33},{"t":"#9P08R2R8L","n":"£|¡f","h":16,"ev":"ab","ip":null,"ipt":0,"ab":2.29,"abt":7,"gen":2.29},{"t":"#QGVYVYYYG","n":"A.R.E.S","h":15,"ev":"ab","ip":null,"ipt":0,"ab":2.29,"abt":7,"gen":2.29},{"t":"#YCG982JJU","n":"ɪᴘ✦Cannibal","h":16,"ev":"ab","ip":null,"ipt":0,"ab":2.0,"abt":6,"gen":2.0},{"t":"#2LULR0JJ0","n":"savaşçı","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#8VLJ0UJ8Y","n":"EFE","h":16,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GYUVQGCC0","n":"Yusuf TALİ","h":17,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GJ000J02G","n":"Mustafa","h":8,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#V0PQ9YV0","n":"tehlike","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#G2YQRYQUR","n":"⚡⚡Pence⚡⚡","h":11,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#2RJ80G0RG","n":"☆ Yunus Reis ☆","h":14,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GJY89U90V","n":"BombardiloŞ Cro","h":9,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GR0VRUR88","n":"Hayri","h":17,"ev":"ip","ip":null,"ipt":0,"ab":2.57,"abt":7,"gen":null},{"t":"#JVQU98QP","n":"Depresyon","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#2RJL8UU2J","n":"UnConScioNabLe","h":17,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#JYPRYUG","n":"✴✴£ra¥✴✴","h":16,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#Q2UULUVQ9","n":"Sadiqov085","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#2JU99VJ0","n":"TAHA BEY","h":15,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#LVG0L9V99","n":"kurt","h":17,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GVV9UPP28","n":"Ｉam丨SORRY亗","h":12,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#8RGUR2UV2","n":"A⚔️K ✨AD HOC✨","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#G0YPGCLJ0","n":"K.S ROCCO","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GPY0QG8PP","n":"K.S SWOXY","h":18,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#PVVRCJJ8V","n":"Ayyıldız time","h":17,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#GRPQQLPCU","n":"REUSE-KAK-22TR","h":11,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#2P8LP882G","n":"CandyGirl","h":10,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null},{"t":"#YVG82PY29","n":"irem__","h":17,"ev":"ip","ip":null,"ipt":0,"ab":null,"abt":0,"gen":null}];
+  var KEY = 'ip-kadro-v4', HEDEF = 15;
   var harita = {}; UYE.forEach(function(u){ harita[u.t] = u; });
-  var elList = document.getElementById('kList'), elSay = document.getElementById('kSay');
+  var elList = document.getElementById('kList');
+  var elIP = document.getElementById('kSayIP'), elAB = document.getElementById('kSayAB');
 
-  function puanSirali(){
-    return UYE.map(function(u){ return u.t; });
+  function sirala(alan, tur){
+    return UYE.slice().sort(function(a,b){
+      var av = a[alan] === null ? -1 : a[alan], bv = b[alan] === null ? -1 : b[alan];
+      if (bv !== av) return bv - av;
+      if (b[tur] !== a[tur]) return b[tur] - a[tur];
+      var ag = a.gen === null ? -1 : a.gen, bg = b.gen === null ? -1 : b.gen;
+      return bg - ag;
+    }).map(function(u){ return u.t; });
   }
   function varsayilan(){
-    var s = puanSirali();
-    return { sira: s, girer: s.slice(0, HEDEF) };
+    var ip = sirala('ip','ipt').filter(function(t){ return harita[t].ip !== null; }).slice(0, HEDEF);
+    var ab = sirala('ab','abt').filter(function(t){ return harita[t].ab !== null && ip.indexOf(t) < 0; }).slice(0, HEDEF);
+    return { ip: ip, ab: ab, sira: sirala('ip','ipt') };
   }
   var D;
   try { D = JSON.parse(localStorage.getItem(KEY)); } catch(e){ D = null; }
-  if (!D || !Array.isArray(D.sira) || !Array.isArray(D.girer)) D = varsayilan();
-  D.sira = D.sira.filter(function(t){ return harita[t]; });
-  puanSirali().forEach(function(t){ if (D.sira.indexOf(t) < 0) D.sira.push(t); });
-  D.girer = D.girer.filter(function(t){ return harita[t]; });
+  if (!D || !Array.isArray(D.ip) || !Array.isArray(D.ab) || !Array.isArray(D.sira)) D = varsayilan();
+  ['ip','ab','sira'].forEach(function(k){ D[k] = D[k].filter(function(t){ return harita[t]; }); });
+  sirala('ip','ipt').forEach(function(t){ if (D.sira.indexOf(t) < 0) D.sira.push(t); });
+  D.ab = D.ab.filter(function(t){ return D.ip.indexOf(t) < 0; });
 
-  function girer(t){ return D.girer.indexOf(t) > -1; }
+  function nere(t){ return D.ip.indexOf(t) > -1 ? 'ip' : (D.ab.indexOf(t) > -1 ? 'ab' : null); }
   function kaydet(){ try { localStorage.setItem(KEY, JSON.stringify(D)); } catch(e){} }
-  function duzen(){
-    var a = D.sira.filter(girer), b = D.sira.filter(function(t){ return !girer(t); });
-    D.sira = a.concat(b);
+
+  function satir(t, no, yer){
+    var u = harita[t];
+    var li = document.createElement('li');
+    li.className = 'kli' + (yer ? '' : ' yok'); li.dataset.t = t; li.draggable = !!yer;
+    function pz(v, c){ return v === null ? '<span class="pbos">–</span>' : '<span class="' + c + '">' + v.toFixed(2) + '</span>'; }
+    li.innerHTML =
+      '<span class="no">' + (no || '') + '</span>' +
+      '<span class="ad">' + u.n + '<i>TH' + u.h + '</i></span>' +
+      '<span class="puanlar">' + pz(u.ip, 'pip') + pz(u.ab, 'pab') + '</span>' +
+      '<span class="ops">' +
+        (yer ? '<button class="ok yuk" title="Yukarı">&#9650;</button><button class="ok asa" title="Aşağı">&#9660;</button>' : '') +
+        '<button class="kl ip' + (yer === 'ip' ? ' on-ip' : '') + '">IP</button>' +
+        '<button class="kl ab' + (yer === 'ab' ? ' on-ab' : '') + '">ABYSS</button>' +
+      '</span>';
+    return li;
+  }
+  function band(metin, sinif){
+    var li = document.createElement('li');
+    li.className = 'kayrak ' + sinif; li.textContent = metin;
+    return li;
   }
   function ciz(){
-    duzen();
     elList.innerHTML = '';
-    var n = 0, bandVar = false;
-    D.sira.forEach(function(t){
-      var u = harita[t], ic = girer(t);
-      if (!ic && !bandVar) {
-        bandVar = true;
-        var band = document.createElement('li');
-        band.className = 'kayrak';
-        band.textContent = 'Savaşa girmeyecekler';
-        elList.appendChild(band);
-      }
-      if (ic) n++;
-      var li = document.createElement('li');
-      li.className = 'kli' + (ic ? '' : ' yok');
-      li.draggable = ic; li.dataset.t = t;
-      var pv = (u.v !== null) ? u.v : u.v2;
-      var p = (pv === null || pv === undefined) ? '<span class="puan bos">–</span>'
-        : '<span class="puan' + (u.v === null ? ' ikincil' : '') + '">' + pv.toFixed(2) + '</span>';
-      li.innerHTML =
-        '<span class="no">' + (ic ? n : '') + '</span>' +
-        '<span class="ad">' + u.n + '<i>TH' + u.h + '</i></span>' + p +
-        '<span class="ops">' +
-          (ic ? '<button class="ok yuk" title="Yukarı">&#9650;</button><button class="ok asa" title="Aşağı">&#9660;</button>' : '') +
-          '<button class="tgl ' + (ic ? 'girer' : 'girmez') + '">' + (ic ? 'GİRECEK' : 'GİRMEZ') + '</button>' +
-        '</span>';
-      elList.appendChild(li);
+    D.ip.forEach(function(t, i){ if (i === 0) elList.appendChild(band('ImaginePerest lig kadrosu', 'ip')); elList.appendChild(satir(t, i + 1, 'ip')); });
+    D.ab.forEach(function(t, i){ if (i === 0) elList.appendChild(band('abyss lig kadrosu', 'ab')); elList.appendChild(satir(t, i + 1, 'ab')); });
+    var dis = D.sira.filter(function(t){ return !nere(t); });
+    dis.forEach(function(t, i){ if (i === 0) elList.appendChild(band('Kadro dışı', '')); elList.appendChild(satir(t, 0, null)); });
+    [['ip', elIP, 'ImaginePerest'], ['ab', elAB, 'abyss']].forEach(function(x){
+      var n = D[x[0]].length;
+      x[1].innerHTML = n + '<small>/ ' + HEDEF + ' ' + x[2] + '</small>';
+      x[1].className = 'kadro-say' + (x[0] === 'ab' ? ' ab' : '') + (n === HEDEF ? ' tam' : (n > HEDEF ? ' fazla' : ''));
     });
-    var ilk = D.sira.filter(girer);
-    if (ilk.length) {
-      var satirlar = elList.querySelectorAll('.kli:not(.yok)');
-      if (satirlar[0]) satirlar[0].querySelector('.yuk').disabled = true;
-      if (satirlar[satirlar.length - 1]) satirlar[satirlar.length - 1].querySelector('.asa').disabled = true;
-    }
-    elSay.innerHTML = ilk.length + '<small>/ ' + HEDEF + ' girecek</small>';
-    elSay.className = 'kadro-say' + (ilk.length === HEDEF ? ' tam' : (ilk.length > HEDEF ? ' fazla' : ''));
     var oz = document.getElementById('kOzet');
-    if (oz) oz.textContent = ilk.length + ' kişi seçili';
+    if (oz) oz.textContent = D.ip.length + ' + ' + D.ab.length;
+    ['ip','ab'].forEach(function(k){
+      var r = elList.querySelectorAll('.kli .kl.' + k + '.on-' + k);
+      if (!r.length) return;
+      var ilk = r[0].closest('.kli'), son = r[r.length - 1].closest('.kli');
+      if (ilk.querySelector('.yuk')) ilk.querySelector('.yuk').disabled = true;
+      if (son.querySelector('.asa')) son.querySelector('.asa').disabled = true;
+    });
   }
   elList.addEventListener('click', function(e){
     var b = e.target.closest('button'); if (!b) return;
-    var t = b.closest('.kli').dataset.t;
-    if (b.classList.contains('tgl')) {
-      var i = D.girer.indexOf(t);
-      if (i > -1) D.girer.splice(i, 1); else D.girer.push(t);
-    } else {
-      var ic = D.sira.filter(girer), j = ic.indexOf(t);
-      if (b.classList.contains('yuk') && j > 0) ic.splice(j - 1, 0, ic.splice(j, 1)[0]);
-      else if (b.classList.contains('asa') && j > -1 && j < ic.length - 1) ic.splice(j + 1, 0, ic.splice(j, 1)[0]);
-      D.sira = ic.concat(D.sira.filter(function(x){ return !girer(x); }));
+    var t = b.closest('.kli').dataset.t, yer = nere(t);
+    if (b.classList.contains('kl')) {
+      var hedef = b.classList.contains('ip') ? 'ip' : 'ab';
+      if (yer) D[yer].splice(D[yer].indexOf(t), 1);
+      if (yer !== hedef) D[hedef].push(t);
+    } else if (yer) {
+      var l = D[yer], j = l.indexOf(t);
+      if (b.classList.contains('yuk') && j > 0) l.splice(j - 1, 0, l.splice(j, 1)[0]);
+      else if (b.classList.contains('asa') && j < l.length - 1) l.splice(j + 1, 0, l.splice(j, 1)[0]);
     }
     kaydet(); ciz();
   });
@@ -882,25 +1074,24 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
   elList.addEventListener('dragover', function(e){ e.preventDefault(); });
   elList.addEventListener('drop', function(e){
     e.preventDefault(); if (!suru) return;
-    var hedef = e.target.closest('.kli'); if (!hedef || hedef.dataset.t === suru) return;
-    if (!girer(hedef.dataset.t)) { var k = D.girer.indexOf(suru); if (k > -1) D.girer.splice(k, 1); }
-    else {
-      var ic = D.sira.filter(girer);
-      ic.splice(ic.indexOf(suru), 1);
-      ic.splice(ic.indexOf(hedef.dataset.t), 0, suru);
-      D.sira = ic.concat(D.sira.filter(function(x){ return !girer(x); }));
-    }
+    var li = e.target.closest('.kli'); if (!li || li.dataset.t === suru) return;
+    var k = nere(suru), h = nere(li.dataset.t);
+    if (!k) return;
+    D[k].splice(D[k].indexOf(suru), 1);
+    if (!h) { kaydet(); ciz(); return; }
+    D[h].splice(D[h].indexOf(li.dataset.t), 0, suru);
     kaydet(); ciz();
   });
-  document.getElementById('kSifir').addEventListener('click', function(){
-    D = varsayilan(); kaydet(); ciz();
-  });
+  document.getElementById('kSifir').addEventListener('click', function(){ D = varsayilan(); kaydet(); ciz(); });
   document.getElementById('kKopya').addEventListener('click', function(){
-    var m = 'ImaginePerest savaş kadrosu\n' + D.sira.filter(girer).map(function(t, i){
-      return (i + 1) + '. ' + harita[t].n + ' (TH' + harita[t].h + ')';
-    }).join('\n');
+    function blok(bas, liste){
+      return bas + '\n' + (liste.length ? liste.map(function(t, i){
+        return (i + 1) + '. ' + harita[t].n + ' (TH' + harita[t].h + ')';
+      }).join('\n') : '(boş)');
+    }
+    var m = blok('ImaginePerest lig kadrosu', D.ip) + '\n\n' + blok('abyss lig kadrosu', D.ab);
     var b = this;
-    function ok(){ b.textContent = 'Kopyalandı ✓'; setTimeout(function(){ b.textContent = 'Listeyi kopyala'; }, 1600); }
+    function ok(){ b.textContent = 'Kopyalandı ✓'; setTimeout(function(){ b.textContent = 'Listeleri kopyala'; }, 1600); }
     function yedek(){
       var ta = document.createElement('textarea');
       ta.value = m; ta.style.position = 'fixed'; ta.style.opacity = '0';
@@ -912,18 +1103,6 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
     else yedek();
   });
   ciz();
-})();
-</script>
-<script>
-(function(){
-  document.querySelectorAll('button.split.acc').forEach(function(b){
-    var g = b.nextElementSibling;
-    b.addEventListener('click', function(){
-      var acik = b.getAttribute('aria-expanded') === 'true';
-      b.setAttribute('aria-expanded', acik ? 'false' : 'true');
-      g.classList.toggle('acik', !acik);
-    });
-  });
 })();
 </script>
 </body>
