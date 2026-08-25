@@ -230,7 +230,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
 .kbtn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);font:inherit;font-size:13px;
   padding:7px 13px;border-radius:2px;cursor:pointer;letter-spacing:.04em}
 .kbtn:hover{border-color:var(--gold);color:var(--gold)}
-.klist{list-style:none;margin:0;padding:0;border:1px solid var(--line);background:var(--panel)}
+.klist{list-style:none;margin:0;padding:0;border:1px solid var(--line);background:var(--panel);overflow:hidden}
 .kli{display:flex;align-items:center;gap:9px;padding:8px 12px;border-bottom:1px solid rgba(47,58,49,.5);font-size:15px}
 .kli:last-child{border-bottom:none}
 .kli.yok{background:rgba(19,23,20,.55)}
@@ -255,10 +255,17 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
 .kayrak{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--panel2);
   border-bottom:1px solid var(--line);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:600}
 .kadro-not{color:var(--faint);font-size:13px;margin:12px 0 0}
-@media(max-width:560px){
-  .kli{font-size:14px;gap:6px;padding:8px 9px}
-  .kli .tgl{min-width:0;font-size:11px;padding:0 8px}
-  .kli .ad i{display:none}
+@media(max-width:640px){
+  /* isim tam görünsün: satır ikiye bölünür — üstte isim, altta puan + tuşlar */
+  .kli{flex-wrap:wrap;row-gap:8px;font-size:14.5px;gap:8px;padding:10px}
+  .kli .no{order:1;align-self:flex-start;padding-top:3px}
+  .kli .ad{order:2;flex:1 1 calc(100% - 34px);white-space:normal;overflow:visible;
+    text-overflow:clip;overflow-wrap:anywhere;line-height:1.35}
+  .kli .ad i{display:inline;margin-left:8px}
+  .kli .puanlar{order:3;margin-left:32px;flex:0 0 auto}
+  .kli .ops{order:4;margin-left:auto;flex:0 0 auto;gap:5px}
+  .kli .tgl{min-width:0;font-size:11px;padding:0 10px}
+  .kayrak{padding:9px 10px}
 }
 
 /* ---------- katlanır tablo ---------- */
@@ -299,7 +306,12 @@ html{scroll-behavior:smooth}
 .kli .ops .kl.on-ab{border-color:rgba(111,176,122,.6);color:var(--jade);background:rgba(111,176,122,.1)}
 .kayrak.ab{color:var(--jade)}
 .kayrak.ip{color:var(--gold)}
-@media(max-width:560px){.kli .puanlar span{width:34px}.kli .ops .kl{min-width:40px;font-size:10px;padding:0 5px}}
+@media(max-width:640px){
+  .kli .puanlar span{width:44px;text-align:left}
+  .kli .ops .ok{width:26px}
+  .kli .ops .kl{min-width:0;font-size:11px;padding:0 8px}
+  .kli .ops button{height:30px}
+}
 
 .uye{display:inline-block;margin-left:8px;font-size:9.5px;letter-spacing:.1em;font-weight:700;
   padding:1px 5px;border-radius:2px;vertical-align:1px}
@@ -307,6 +319,51 @@ html{scroll-behavior:smooth}
 .u-ab{background:rgba(111,176,122,.16);color:var(--jade)}
 .u-yok{background:rgba(198,85,62,.16);color:var(--brick)}
 .cik{color:var(--brick);font-weight:600;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin-left:7px}
+
+/* ================= TELEFON DÜZENİ ================= */
+@media(max-width:640px){
+  .wrap{padding:0 14px 60px}
+  section{margin-top:40px}
+  h2{font-size:22px}
+  .lede{font-size:15px}
+  .banner{padding-top:30px}
+  .crest{gap:16px}
+  .shield{width:60px;height:68px;font-size:24px;padding-bottom:11px}
+  .kpi{padding:13px 14px 12px}
+  .kpi b{font-size:26px}
+  .kpi span{font-size:10.5px;letter-spacing:.1em}
+  /* lig turları: dar ekranda 3'lü */
+  .rounds{grid-template-columns:repeat(auto-fit,minmax(104px,1fr))}
+  .round{padding:9px 9px 10px}
+  /* onur listesi */
+  .hrow{padding:12px;gap:10px}
+  .hname{font-size:15px}
+  .hrank{font-size:20px}
+  .hnum{font-size:16px}
+  .hnum small{font-size:9px}
+  /* kartlar */
+  .card{padding:15px 16px 17px}
+  .cmp{padding:14px 15px 16px}
+  .cmp .big{font-size:34px}
+  /* tablolar yana kayar — ipucu göster */
+  .scroll{position:relative}
+  .scroll::after{content:'yana kaydır →';position:sticky;left:0;bottom:0;display:block;
+    padding:5px 12px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--faint);background:linear-gradient(180deg,transparent,var(--panel) 55%)}
+  table{font-size:13px;min-width:680px}
+  th,td{padding:8px 9px}
+  /* dokunma hedefleri biraz büyüsün */
+  .kli .ops button{height:34px}
+  .kbtn{padding:9px 14px}
+  button.split{padding:4px 0}
+  .kadro-say{font-size:24px}
+  .kadro-say small{font-size:11px;letter-spacing:.1em;margin-left:6px}
+}
+@media(max-width:380px){
+  .kli .puanlar span{width:40px}
+  .kli .ops .kl{padding:0 7px;font-size:10.5px}
+  .kli .ops .ok{width:24px}
+}
 </style>
 
 <header class="banner">
@@ -341,6 +398,7 @@ html{scroll-behavior:smooth}
       <span class="kadro-say ab" id="kSayAB">0<small>/ 15 abyss</small></span>
       <span style="flex:1 1 auto"></span>
       <button class="kbtn" id="kKopya">Listeleri kopyala</button>
+      <button class="kbtn" id="kGeri" hidden>Eski kaydımı geri getir</button>
       <button class="kbtn" id="kSifir">Sıfırla</button>
     </div>
     <ul class="klist" id="kList"></ul>
@@ -1004,9 +1062,21 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
     var ab = sirala('ab','abt').filter(function(t){ return harita[t].k === 'ab' && ip.indexOf(t) < 0; }).slice(0, HEDEF);
     return { ip: ip, ab: ab, sira: sirala('ip','ipt') };
   }
-  var D;
-  try { D = JSON.parse(localStorage.getItem(KEY)); } catch(e){ D = null; }
+  // ÖNEMLİ: KEY'i bir daha değiştirme — kullanıcının kaydettiği kadro silinir.
+  // Veri güncellenince sadece UYE dizisi yenilenir, anahtar sabit kalır.
+  function oku(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } }
+  var D = oku(KEY);
+  if (!D) {                                   // eski sürümlerden devral
+    var v4 = oku('ip-kadro-v4');
+    if (v4 && Array.isArray(v4.ip)) D = v4;
+    else {
+      var v3 = oku('ip-kadro-v3') || oku('ip-kadro-v2');
+      if (v3 && Array.isArray(v3.girer)) D = { ip: v3.girer, ab: [], sira: v3.sira || [] };
+    }
+    if (D) { try { localStorage.setItem(KEY, JSON.stringify(D)); } catch(e){} }
+  }
   if (!D || !Array.isArray(D.ip) || !Array.isArray(D.ab) || !Array.isArray(D.sira)) D = varsayilan();
+  if (!Array.isArray(D.sira)) D.sira = [];
   ['ip','ab','sira'].forEach(function(k){ D[k] = D[k].filter(function(t){ return harita[t]; }); });
   sirala('ip','ipt').forEach(function(t){ if (D.sira.indexOf(t) < 0) D.sira.push(t); });
   D.ab = D.ab.filter(function(t){ return D.ip.indexOf(t) < 0; });
@@ -1095,6 +1165,30 @@ dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
     kaydet(); ciz();
   });
   document.getElementById('kSifir').addEventListener('click', function(){ D = varsayilan(); kaydet(); ciz(); });
+
+  // Anahtar değişikliği yüzünden kaybolan eski kayıtlar için tek tuşla geri alma
+  var eskiler = ['ip-kadro-v4','ip-kadro-v3','ip-kadro-v2'];
+  function eskiBul(){
+    for (var i = 0; i < eskiler.length; i++) {
+      var v = oku(eskiler[i]);
+      if (!v) continue;
+      if (Array.isArray(v.ip) && (v.ip.length || (v.ab && v.ab.length))) return { ip: v.ip, ab: v.ab || [], sira: v.sira || [] };
+      if (Array.isArray(v.girer) && v.girer.length) return { ip: v.girer, ab: [], sira: v.sira || [] };
+    }
+    return null;
+  }
+  var gBtn = document.getElementById('kGeri');
+  if (eskiBul()) gBtn.hidden = false;
+  gBtn.addEventListener('click', function(){
+    var e = eskiBul(); if (!e) { gBtn.hidden = true; return; }
+    D = e;
+    ['ip','ab','sira'].forEach(function(k){ D[k] = D[k].filter(function(t){ return harita[t]; }); });
+    sirala('ip','ipt').forEach(function(t){ if (D.sira.indexOf(t) < 0) D.sira.push(t); });
+    D.ab = D.ab.filter(function(t){ return D.ip.indexOf(t) < 0; });
+    kaydet(); ciz();
+    gBtn.textContent = 'Geri getirildi ✓';
+    setTimeout(function(){ gBtn.textContent = 'Eski kaydımı geri getir'; }, 2000);
+  });
   document.getElementById('kKopya').addEventListener('click', function(){
     function blok(bas, liste){
       return bas + '\n' + (liste.length ? liste.map(function(t, i){
